@@ -3,9 +3,7 @@ import datetime
 from aiogram import types
 
 from app import keyboards as kb
-from app.var import bot, dp, moscow_tz, price_60k, price_300k, price_980k, price_1980k, price_3280k, price_6480k, \
-    price_moon, \
-    check_sub_channel, NEWS_ID
+from app.var import bot, dp, moscow_tz, check_sub_channel, NEWS_ID
 from app import database as db
 
 from dotenv import load_dotenv
@@ -33,6 +31,7 @@ async def pr_gnsh_moon(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_moon = await db.show_price('gnsh_moon')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈Благословение полой луны
@@ -58,6 +57,7 @@ async def pr_gnsh_60k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_60k = await db.show_price('gnsh_60k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈60 Кристаллов Сотворения
@@ -84,6 +84,7 @@ async def pr_gnsh_300k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_300k = await db.show_price('gnsh_300k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈300+30 Кристаллов Сотворения
@@ -110,6 +111,7 @@ async def pr_gnsh_980k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_980k = await db.show_price('gnsh_980k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈980+110 Кристаллов Сотворения
@@ -136,6 +138,7 @@ async def pr_gnsh_1980k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_1980k = await db.show_price('gnsh_1980k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈1980+260 Кристаллов Сотворения
@@ -162,6 +165,7 @@ async def pr_gnsh_3280k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_3280k = await db.show_price('gnsh_3280k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈3280 + 600 Кристаллов Сотворения
@@ -188,6 +192,7 @@ async def pr_gnsh_6480k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_6480k = await db.show_price('gnsh_6480k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈6480 + 1600 Кристаллов Сотворения
@@ -241,6 +246,7 @@ async def pr_gnsh_buy_moon(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_moon = await db.show_price('gnsh_moon')
         if money >= price_moon:
             await db.add_money(callback_query.from_user.id, -price_moon)
             await db.add_purchase(callback_query.from_user.id, 'Благословение полой луны', price_moon, time)
@@ -273,6 +279,7 @@ async def pr_gnsh_buy_60k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_60k = await db.show_price('gnsh_60k')
         if money >= price_60k:
             await db.add_money(callback_query.from_user.id, -price_60k)
             await db.add_purchase(callback_query.from_user.id, '60 Кристаллов Сотворения', price_60k, time)
@@ -305,6 +312,7 @@ async def pr_gnsh_buy_300k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_300k = await db.show_price('gnsh_300k')
         if money >= price_300k:
             await db.add_money(callback_query.from_user.id, -price_300k)
             await db.add_purchase(callback_query.from_user.id, '300+30 Кристаллов Сотворения', price_300k, time)
@@ -337,6 +345,7 @@ async def pr_gnsh_buy_980k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_980k = await db.show_price('gnsh_980k')
         if money >= price_980k:
             await db.add_money(callback_query.from_user.id, -price_980k)
             await db.add_purchase(callback_query.from_user.id, '980+110 Кристаллов Сотворения', price_980k, time)
@@ -369,6 +378,7 @@ async def pr_gnsh_buy_1980k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_1980k = await db.show_price('gnsh_1980k')
         if money >= price_1980k:
             await db.add_money(callback_query.from_user.id, -price_1980k)
             await db.add_purchase(callback_query.from_user.id, '1980+260 Кристаллов Сотворения', price_1980k, time)
@@ -401,6 +411,7 @@ async def pr_gnsh_buy_3280k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_3280k = await db.show_price('gnsh_3280k')
         if money >= price_3280k:
             await db.add_money(callback_query.from_user.id, -price_3280k)
             await db.add_purchase(callback_query.from_user.id, '3280+600 Кристаллов Сотворения', price_3280k, time)
@@ -433,6 +444,7 @@ async def pr_gnsh_buy_6480k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_6480k = await db.show_price('gnsh_6480k')
         if money >= price_6480k:
             await db.add_money(callback_query.from_user.id, -price_6480k)
             await db.add_purchase(callback_query.from_user.id, '6480+1600 Кристаллов Сотворения', price_6480k, time)

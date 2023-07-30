@@ -15,6 +15,7 @@ from handlers.admin_hnd import reg_hand_admin
 from handlers.discord_hnd import reg_hand_discord
 from handlers.genshin_hnd import reg_hand_genshin
 from handlers.honkai_hnd import reg_hand_honkai
+from handlers.tg_hnd import reg_hand_tg
 
 from dotenv import load_dotenv
 
@@ -173,11 +174,32 @@ async def sendall(message: types.Message):
         await db.set_active(message.from_user.id, 0)
 
 
+@dp.message_handler(commands=['cgprice'])
+async def priceadmn(message: types.Message):
+    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        await db.set_active(message.from_user.id, 1)
+        if message.from_user.id == adm_id:
+            text = message.text[9:]
+            id = text.split(' ')[0]
+            mn = text.split(' ')[1]
+            await db.change_price(id, mn)
+            await message.answer(f'Цена успешна для {id} успешно изменена на {mn}')
+
+        else:
+            await message.reply(
+                'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
+    else:
+        await message.answer(
+            f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+        await db.set_active(message.from_user.id, 0)
+
+
 reg_hand_profile()
 reg_hand_admin()
 reg_hand_discord()
 reg_hand_genshin()
 reg_hand_honkai()
+reg_hand_tg()
 
 
 # cheat_hnd.reg_hand_cheat()
@@ -198,9 +220,8 @@ async def echo_message(message: types.Message):
 @dp.message_handler(content_types=ContentType.ANY)
 async def unknown_message(message: types.Message):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
-        message_text = text(
-            f'''Я не знаю, что с этим делать. \n{'Я просто напомню'}, что есть, {code('команда')}, /help''')
-        await message.reply(message_text, parse_mode=ParseMode.MARKDOWN)
+        await message.reply(
+            'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
     else:
         await message.answer(
             f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')

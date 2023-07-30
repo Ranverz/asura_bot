@@ -35,9 +35,38 @@ async def db_start():
                 CREATE TABLE IF NOT EXISTS items(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT,
-                    price REAL
+                    price REAL,
+                    UNIQUE(name)
                 )
             ''')
+
+    items_data = [
+        ('dsntr_1m_qr', 349),
+        ('dsntr_1y_qr', 3399),
+        ('dsntr_1m_noreg', 439),
+        ('dsntr_1y_noreg', 3599),
+
+        ('gnsh_moon', 410),
+        ('gnsh_60k', 90),
+        ('gnsh_300k', 410),
+        ('gnsh_980k', 1240),
+        ('gnsh_1980k', 2690),
+        ('gnsh_3280k', 4140),
+        ('gnsh_6480k', 8280),
+
+        ('hon_sp', 440),
+        ('hon_60k', 110),
+        ('hon_300k', 440),
+        ('hon_980k', 1320),
+        ('hon_1980k', 2860),
+        ('hon_3280k', 4400),
+        ('hon_6480k', 8800),
+
+        ('tg_1m', 249),
+        ('tg_1y', 1799),
+    ]
+
+    cursor.executemany('''INSERT OR IGNORE INTO `items` (name, price) VALUES (?, ?)''', items_data)
 
     conn.commit()
 
@@ -96,6 +125,16 @@ async def add_purchase(user_id, item_name, price, tm):
     cursor.execute(
         '''INSERT INTO `history` (telegram_id, name, price, purc_time) VALUES (?, ?, ?, ?)''',
         (user_id, item_name, price, tm,))
+    conn.commit()
+
+
+async def show_price(item_name):
+    pr = cursor.execute('''SELECT price FROM items WHERE name = ?''', (item_name,)).fetchone()
+    return int(pr[0])
+
+
+async def change_price(item_name, price):
+    cursor.execute('''UPDATE items SET price = ? WHERE name = ?''', (price, item_name,))
     conn.commit()
 
 

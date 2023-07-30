@@ -3,8 +3,7 @@ import datetime
 from aiogram import types
 
 from app import keyboards as kb
-from app.var import bot, dp, moscow_tz, price_sp, price_hon_60k, price_hon_300k, price_hon_980k, price_hon_1980k, \
-    price_hon_3280k, price_hon_6480k, check_sub_channel, NEWS_ID
+from app.var import bot, dp, moscow_tz, check_sub_channel, NEWS_ID
 from app import database as db
 
 from dotenv import load_dotenv
@@ -32,6 +31,7 @@ async def pr_hon_sp(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_sp = await db.show_price('hon_sp')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈Пропуск снабжения экспресса
@@ -57,6 +57,7 @@ async def pr_hon_60k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_hon_60k = await db.show_price('hon_60k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈60 Сущности древних снов
@@ -83,6 +84,7 @@ async def pr_hon_300k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_hon_300k = await db.show_price('hon_300k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈300+30 Сущности древних снов
@@ -109,6 +111,7 @@ async def pr_hon_980k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_hon_980k = await db.show_price('hon_980k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈980+110 Сущности древних снов
@@ -135,6 +138,7 @@ async def pr_hon_1980k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_hon_1980k = await db.show_price('hon_1980k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈1980+260 Сущности древних снов
@@ -161,6 +165,7 @@ async def pr_hon_3280k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_hon_3280k = await db.show_price('hon_3280k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈3280+600 Сущности древних снов
@@ -187,6 +192,7 @@ async def pr_hon_6480k(callback_query: types.CallbackQuery):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
         await db.set_active(callback_query.from_user.id, 1)
         await callback_query.message.delete()
+        price_hon_6480k = await db.show_price('hon_6480k')
         await bot.send_message(chat_id=callback_query.from_user.id,
                                text=f'''Товар: 
 🎈6480+1600 Сущности древних снов
@@ -240,6 +246,7 @@ async def pr_hon_buy_sp(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_sp = await db.show_price('hon_sp')
         if money >= price_sp:
             await db.add_money(callback_query.from_user.id, -price_sp)
             await db.add_purchase(callback_query.from_user.id, 'Пропуск снабжения экспресса', price_sp, time)
@@ -272,6 +279,7 @@ async def pr_hon_buy_60k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_hon_60k = await db.show_price('hon_60k')
         if money >= price_hon_60k:
             await db.add_money(callback_query.from_user.id, -price_hon_60k)
             await db.add_purchase(callback_query.from_user.id, '60 Сущности древних снов', price_hon_60k, time)
@@ -304,6 +312,7 @@ async def pr_hon_buy_300k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_hon_300k = await db.show_price('hon_300k')
         if money >= price_hon_300k:
             await db.add_money(callback_query.from_user.id, -price_hon_300k)
             await db.add_purchase(callback_query.from_user.id, '300+30 Сущности древних снов', price_hon_300k, time)
@@ -336,6 +345,7 @@ async def pr_hon_buy_980k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_hon_980k = await db.show_price('hon_980k')
         if money >= price_hon_980k:
             await db.add_money(callback_query.from_user.id, -price_hon_980k)
             await db.add_purchase(callback_query.from_user.id, '980+110 Сущности древних снов', price_hon_980k, time)
@@ -368,6 +378,7 @@ async def pr_hon_buy_1980k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_hon_1980k = await db.show_price('hon_1980k')
         if money >= price_hon_1980k:
             await db.add_money(callback_query.from_user.id, -price_hon_1980k)
             await db.add_purchase(callback_query.from_user.id, '1980+260 Сущности древних снов', price_hon_1980k, time)
@@ -400,6 +411,7 @@ async def pr_hon_buy_3280k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_hon_3280k = await db.show_price('hon_3280k')
         if money >= price_hon_3280k:
             await db.add_money(callback_query.from_user.id, -price_hon_3280k)
             await db.add_purchase(callback_query.from_user.id, '3280+600 Сущности древних снов', price_hon_3280k, time)
@@ -432,6 +444,7 @@ async def pr_hon_buy_6480k(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 1)
         money = await db.show_money(callback_query.from_user.id)
         time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
+        price_hon_6480k = await db.show_price('hon_6480k')
         if money >= price_hon_6480k:
             await db.add_money(callback_query.from_user.id, -price_hon_6480k)
             await db.add_purchase(callback_query.from_user.id, '6480+1600 Сущности древних снов', price_hon_6480k, time)
