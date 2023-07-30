@@ -2,7 +2,6 @@ import aiogram.utils.exceptions
 from aiogram import types
 from aiogram.utils import executor
 from aiogram.types.message import ContentType, ParseMode
-from aiogram.utils.markdown import code, text
 
 import os
 
@@ -200,9 +199,6 @@ reg_hand_discord()
 reg_hand_genshin()
 reg_hand_honkai()
 reg_hand_tg()
-
-
-# cheat_hnd.reg_hand_cheat()
 
 
 @dp.message_handler()

@@ -5,7 +5,7 @@ from yoomoney import Quickpay, Client
 from app.var import dp, bot, check_sub_channel, NEWS_ID
 from app import database as db
 from aiogram import types
-from aiogram.utils.markdown import code, text
+from aiogram.utils.markdown import text
 
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
@@ -35,12 +35,17 @@ async def process_profile_command(message: types.Message):
             balance = profile[3]
             bought_items = profile[4]
 
-            message_text = text(
-                f'''Профиль\nID: {message.from_user.id}\nИмя: {message.from_user.first_name}\nЛогин: @{message.from_user.username}\nДата регистрации: {reg_date}\n\nБаланс: {balance}₽\nКоличество покупок: {bought_items}''')
+            await message.answer(
+                f'''Профиль
+Имя: {message.from_user.first_name}
+Логин: @{message.from_user.username}
+ID: {message.from_user.id}
+Дата регистрации: {reg_date}
 
-            await message.answer(message_text,
-                                 reply_markup=kb.keyboard_profile,
-                                 )
+Баланс: {balance}₽
+Количество покупок: {bought_items}''',
+                reply_markup=kb.keyboard_profile,
+            )
     else:
         await message.answer(
             f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')

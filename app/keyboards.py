@@ -13,13 +13,6 @@ def buy_menu(isurl=True, url='', bill=''):
 choose_insert = InlineKeyboardMarkup(row_width=1)
 choose_insert.add(InlineKeyboardButton(text='Отмена', callback_data='choose_insert_cancel'))
 
-keyboard_cheat = InlineKeyboardMarkup(row_width=1)
-keyboard_cheat.add(InlineKeyboardButton(text='Подписка на 7 дней', callback_data='cheat_7d'),
-                   InlineKeyboardButton(text='Подписка на 30 дней', callback_data='cheat_30d'),
-                   InlineKeyboardButton(text='Подписка на 180 дней', callback_data='cheat_180d'),
-                   InlineKeyboardButton(text='Подписка на 1 год', callback_data='cheat_1y'),
-                   InlineKeyboardButton(text='Назад ко всем категориям', callback_data='cheat_back'), )
-
 keyboard_nitro = InlineKeyboardMarkup(row_width=1)
 keyboard_nitro.add(InlineKeyboardButton(text=f'Nitro Full(1 месяц) QR',
                                         callback_data='ntr_1m_qr'),
