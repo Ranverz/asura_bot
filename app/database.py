@@ -146,8 +146,20 @@ async def show_purchase_id(user_id, tm):
 
 async def show_last_purchase_id(user_id):
     user = cursor.execute(
-        '''SELECT purch_id, purc_time FROM history WHERE telegram_id = ? ORDER BY purch_id DESC LIMIT 1''',
+        '''SELECT purch_id, purc_time, name FROM history WHERE telegram_id = ? ORDER BY purch_id DESC LIMIT 1''',
         (user_id,)).fetchone()
+    return user
+
+
+async def show_active_users():
+    user = cursor.execute(
+        '''SELECT telegram_id FROM users WHERE active = 1''').fetchall()
+    return user
+
+
+async def show_unactive_users():
+    user = cursor.execute(
+        '''SELECT telegram_id FROM users WHERE active = 0''').fetchall()
     return user
 
 

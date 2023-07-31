@@ -159,7 +159,8 @@ keyboard_main_admin = ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard_main_admin.add('Товары', 'Профиль').add('Руководство', 'Помощь').add('Админ-панель')
 
 admin_panel = ReplyKeyboardMarkup(resize_keyboard=True)
-admin_panel.add('Рассылка (/sendall *text*)').add('+бл (/addmn *id* *amm*)').add('измц (/cgprice *name* *price*)')
+admin_panel.add('Рассылка (/sendall *text*)').add('+бл (/addmn *id* *amm*)').add('измц (/cgprice *name* *price*)').add(
+    'польз (/useractive)')
 
 keyboard_profile = InlineKeyboardMarkup(row_width=2)
 keyboard_profile.add(InlineKeyboardButton(text='Пополнить', callback_data='profile_insert'),

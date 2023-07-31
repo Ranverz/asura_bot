@@ -106,9 +106,29 @@ async def addreview(message: types.Message):
             pr = await db.show_last_purchase_id(message.from_user.id)
 
             await bot.send_message(chat_id=REVIEWS_ID,
-                                   text=f'''Отзыв о заказе {pr[0]}\nВремя заказа: {pr[1].split('.')[0]}\nПользователь: @{message.from_user.username}\n\n{text}''')
+                                   text=f'''Номер заказа {pr[0]}\nВремя заказа: {pr[1].split('.')[0]}\nТип товара: {pr[2]}\n\nПользователь: @{message.from_user.username}\n{text}''')
         except TypeError:
             await message.answer('Вы не совершили ни одной покупки')
+    else:
+        await message.answer(
+            f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+        await db.set_active(message.from_user.id, 0)
+
+
+@dp.message_handler(commands=['useractive'])
+async def show_active_comand(message: types.Message):
+    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        await db.set_active(message.from_user.id, 1)
+        if message.chat.type == 'private':
+            if message.from_user.id == adm_id:
+                amm = len(await db.show_active_users())
+                amm_unactive = len(await db.show_unactive_users())
+                await message.reply(
+                    f'''Всего активных пользователей(подписаны и не заблокировали): {amm}\nНеактивных: {amm_unactive}\n\nВсего: {amm + amm_unactive}''')
+            else:
+                await message.reply(
+                    'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
+
     else:
         await message.answer(
             f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
