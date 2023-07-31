@@ -5,7 +5,6 @@ from yoomoney import Quickpay, Client
 from app.var import dp, bot, check_sub_channel, NEWS_ID
 from app import database as db
 from aiogram import types
-from aiogram.utils.markdown import text
 
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
