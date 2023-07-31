@@ -1,7 +1,7 @@
 import aiogram.utils.exceptions
 from aiogram import types
 from aiogram.utils import executor
-from aiogram.types.message import ContentType, ParseMode
+from aiogram.types.message import ContentType
 
 import os
 
@@ -168,22 +168,24 @@ async def sendall(message: types.Message):
         if message.chat.type == 'private':
             if message.from_user.id == adm_id:
                 text = message.text[7:]
-                id = text.split(' ')[0]
+                id_us = text.split(' ')[0]
                 mn = text.split(' ')[1]
-                if await db.user_exists(id):
-                    if await db.user_is_active(id) and await check_sub_channel(
-                            await bot.get_chat_member(chat_id=NEWS_ID, user_id=id)):
+                if await db.user_exists(id_us):
+                    if await db.user_is_active(id_us) and await check_sub_channel(
+                            await bot.get_chat_member(chat_id=NEWS_ID, user_id=id_us)):
                         try:
-                            await bot.send_message(id, f'Ваш баланс пополнен на {mn}₽ админом')
-                            await db.add_money(id, mn)
-                            await message.answer(f'Успешно добавили {mn}₽ пользователю {id}')
+                            await bot.send_message(id_us, f'Ваш баланс пополнен на {mn}₽ админом')
+                            await db.add_money(id_us, mn)
+                            await message.answer(f'Успешно добавили {mn}₽ пользователю {id_us}')
                         except aiogram.exceptions.BotBlocked:
-                            await message.answer(f'Пользователь {id} заблокировал бота, деньги не отправлены')
+                            await message.answer(f'Пользователь {id_us} заблокировал бота, деньги не отправлены')
+                            await db.set_active(message.from_user.id, 0)
                     else:
                         await message.answer(
-                            f'Пользователь {id} не подписан на новостной канал, деньги не отправлены')
+                            f'Пользователь {id_us} не подписан на новостной канал, деньги не отправлены')
                 else:
-                    await message.answer(f'''Пользователь {id} не зарегистрирован в магазине, деньги не отправлены''')
+                    await message.answer(
+                        f'''Пользователь {id_us} не зарегистрирован в магазине, деньги не отправлены''')
             else:
                 await message.reply(
                     'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
@@ -199,10 +201,10 @@ async def priceadmn(message: types.Message):
         await db.set_active(message.from_user.id, 1)
         if message.from_user.id == adm_id:
             text = message.text[9:]
-            id = text.split(' ')[0]
+            id_item = text.split(' ')[0]
             mn = text.split(' ')[1]
-            await db.change_price(id, mn)
-            await message.answer(f'Цена успешна для {id} успешно изменена на {mn}')
+            await db.change_price(id_item, mn)
+            await message.answer(f'Цена успешна для {id_item} успешно изменена на {mn}')
 
         else:
             await message.reply(
