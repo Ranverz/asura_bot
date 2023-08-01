@@ -25,17 +25,20 @@ class NewOrder(StatesGroup):
 
 # @dp.message_handler(text='Профиль')
 async def process_profile_command(message: types.Message):
-    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
-        await db.set_active(message.from_user.id, 1)
-        if message.chat.type == 'private':
-            # Retrieve user information from dp.data dictionary
-            profile = await db.show_profile(message.from_user.id)
-            reg_date = profile[2]
-            balance = profile[3]
-            bought_items = profile[4]
+    blocked_raw = (await db.show_blocked_users())
+    blocked = list(map(lambda user: user[0], blocked_raw))
+    if message.from_user.id not in blocked:
+        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+            await db.set_active(message.from_user.id, 1)
+            if message.chat.type == 'private':
+                # Retrieve user information from dp.data dictionary
+                profile = await db.show_profile(message.from_user.id)
+                reg_date = profile[2]
+                balance = profile[3]
+                bought_items = profile[4]
 
-            await message.answer(
-                f'''Профиль
+                await message.answer(
+                    f'''Профиль
 Имя: {message.from_user.first_name}
 Логин: @{message.from_user.username}
 ID: {message.from_user.id}
@@ -43,30 +46,33 @@ ID: {message.from_user.id}
 
 Баланс: {balance}₽
 Количество покупок: {bought_items}''',
-                reply_markup=kb.keyboard_profile,
-            )
-    else:
-        await message.answer(
-            f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
-        await db.set_active(message.from_user.id, 0)
+                    reply_markup=kb.keyboard_profile,
+                )
+        else:
+            await message.answer(
+                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await db.set_active(message.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='profile_history')
 async def show_purchased_history(call: types.CallbackQuery):
-    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=call.from_user.id)):
-        await db.set_active(call.from_user.id, 1)
-        formatted_ans = ''
-        profile = await db.show_history(call.from_user.id)
-        if len(profile) != 0:
-            for c in profile:
-                formatted_ans += f"Номер покупки: {c[0]}\nТовар: {c[2]}\nЦена: {c[3]}₽\nДата покупки(гг-мм-дд): {c[4].split('.')[0]}\n\n"
-            await call.message.answer(formatted_ans)
+    blocked_raw = (await db.show_blocked_users())
+    blocked = list(map(lambda user: user[0], blocked_raw))
+    if call.from_user.id not in blocked:
+        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=call.from_user.id)):
+            await db.set_active(call.from_user.id, 1)
+            formatted_ans = ''
+            profile = await db.show_history(call.from_user.id)
+            if len(profile) != 0:
+                for c in profile:
+                    formatted_ans += f"Номер покупки: {c[0]}\nТовар: {c[2]}\nЦена: {c[3]}₽\nДата покупки(гг-мм-дд): {c[4].split('.')[0]}\n\n"
+                await call.message.answer(formatted_ans)
+            else:
+                await call.message.answer('Вы не совершили ни одной покупки')
         else:
-            await call.message.answer('Вы не совершили ни одной покупки')
-    else:
-        await call.answer(
-            f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
-        await db.set_active(call.from_user.id, 0)
+            await call.answer(
+                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await db.set_active(call.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='profile_insert')

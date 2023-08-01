@@ -17,7 +17,8 @@ async def db_start():
             registration_date TEXT,
             balance REAL,
             bought_items INTEGER,
-            active INTEGER DEFAULT 1
+            active INTEGER DEFAULT 1,
+            blocked INTEGER DEFAULT 0
         )
     ''')
 
@@ -88,6 +89,16 @@ async def user_exists(user_id):
         return True
     else:
         return False
+
+
+async def set_block_user_status(user_id, val):
+    cursor.execute(f'''UPDATE users SET blocked = ? WHERE telegram_id = ?''', (val, user_id,))
+    conn.commit()
+
+
+async def show_blocked_users():
+    users = cursor.execute(f'''SELECT telegram_id FROM users WHERE blocked = 1''').fetchall()
+    return users
 
 
 async def user_is_active(user_id):

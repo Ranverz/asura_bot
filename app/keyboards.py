@@ -160,7 +160,7 @@ keyboard_main_admin.add('Товары', 'Профиль').add('Руководс�
 
 admin_panel = ReplyKeyboardMarkup(resize_keyboard=True)
 admin_panel.add('Рассылка (/sendall *text*)').add('+бл (/addmn *id* *amm*)').add('измц (/cgprice *name* *price*)').add(
-    'польз (/useractive)')
+    'польз (/useractive)').add('забл (/block *id*)').add('разбл (/unblock *id*)').add('забл_спис /list_blocked')
 
 keyboard_profile = InlineKeyboardMarkup(row_width=2)
 keyboard_profile.add(InlineKeyboardButton(text='Пополнить', callback_data='profile_insert'),
