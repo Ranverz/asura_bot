@@ -66,7 +66,9 @@ async def db_start():
         ('tg_1m', 249),
         ('tg_1y', 1799),
 
-        ('ya', 89)
+        ('ya', 89),
+
+        ('xbox', 469),
     ]
 
     cursor.executemany('''INSERT OR IGNORE INTO `items` (name, price) VALUES (?, ?)''', items_data)
