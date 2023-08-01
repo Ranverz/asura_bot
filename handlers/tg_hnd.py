@@ -171,7 +171,7 @@ Cвяжитесь с администратором для получения т
             await db.set_active(callback_query.from_user.id, 0)
 
 
-# @dp.callback_query_handler(text='buy_buy_tg_1y')
+# @dp.callback_query_handler(text='buy_buy_tg_1m')
 async def process_buy_tg_1m_qr(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
@@ -183,7 +183,7 @@ async def process_buy_tg_1m_qr(callback_query: types.CallbackQuery):
             price_tg_1m_qr = await db.show_price('tg_1m')
             if money >= price_tg_1m_qr:
                 await db.add_money(callback_query.from_user.id, -price_tg_1m_qr)
-                await db.add_purchase(callback_query.from_user.id, 'Telegram Premium 1y qr', price_tg_1m_qr, time)
+                await db.add_purchase(callback_query.from_user.id, 'Telegram Premium 1m qr', price_tg_1m_qr, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
                 await callback_query.message.delete()
                 await callback_query.message.answer(
