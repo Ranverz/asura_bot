@@ -187,7 +187,7 @@ async def process_buy_nitro_1y_qr(callback_query: types.CallbackQuery):
             await callback_query.message.answer(
                 text=f'''
 Поздравляем с покупкой Discord Nitro на 1 год. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_admin, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
 Убедительная просьба после получения товара оставить отзыв при помощи команды /review
 Пример: /review Отличный магазин.
@@ -220,7 +220,7 @@ async def process_buy_nitro_1m_qr(callback_query: types.CallbackQuery):
             await callback_query.message.answer(
                 text=f'''
 Поздравляем с покупкой Discord Nitro на 1 месяц. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_admin, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
 Убедительная просьба после получения товара оставить отзыв при помощи команды /review
 Пример: /review Отличный магазин.
@@ -252,14 +252,14 @@ async def process_buy_nitro_1m_noreg(callback_query: types.CallbackQuery):
             await callback_query.message.delete()
             await callback_query.message.answer(
                 text=f'''
-    Поздравляем с покупкой Discord Nitro на 1 месяц. 
-    Cвяжитесь с администратором для получения товара: @AsuraStore_admin, переслав это сообщение.
+Поздравляем с покупкой Discord Nitro на 1 месяц. 
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
     
-    Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-    Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв при помощи команды /review
+Пример: /review Отличный магазин.
     
-    тип товара:Discord Nitro 1 месяц без входа
-    уникальный номер: {id_p}
+тип товара:Discord Nitro 1 месяц без входа
+уникальный номер: {id_p}
                                         ''')
             await bot.send_message(op_id,
                                    f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 месяц без входа''')
@@ -285,14 +285,14 @@ async def process_buy_nitro_1y_noreg(callback_query: types.CallbackQuery):
             await callback_query.message.delete()
             await callback_query.message.answer(
                 text=f'''
-    Поздравляем с покупкой Discord Nitro на 1 год. 
-    Cвяжитесь с администратором для получения товара: @AsuraStore_admin, переслав это сообщение.
+Поздравляем с покупкой Discord Nitro на 1 год. 
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
     
-    Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-    Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв при помощи команды /review
+Пример: /review Отличный магазин.
     
-    тип товара:Discord Nitro 1 год без входа
-    уникальный номер: {id_p}
+тип товара:Discord Nitro 1 год без входа
+уникальный номер: {id_p}
                                         ''')
             await bot.send_message(op_id,
                                    f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 год без входа''')

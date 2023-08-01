@@ -135,7 +135,7 @@ async def process_buy_tg_1y_qr(callback_query: types.CallbackQuery):
             await callback_query.message.answer(
                 text=f'''
 Поздравляем с покупкой Telegram Premium на 1 год. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_admin, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
 Убедительная просьба после получения товара оставить отзыв при помощи команды /review
 Пример: /review Отличный магазин.
@@ -168,7 +168,7 @@ async def process_buy_tg_1m_qr(callback_query: types.CallbackQuery):
             await callback_query.message.answer(
                 text=f'''
 Поздравляем с покупкой Telegram Premium на 1 месяц. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_admin, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
 Убедительная просьба после получения товара оставить отзыв при помощи команды /review
 Пример: /review Отличный магазин.

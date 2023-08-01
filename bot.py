@@ -52,7 +52,7 @@ async def process_help_command(message: types.Message):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
         await db.set_active(message.from_user.id, 1)
         if message.chat.type == 'private':
-            await message.reply("Техническая поддержка магазина: @AsuraStore_admin")
+            await message.reply("Техническая поддержка магазина: @AsuraStore_helper")
     else:
         await message.answer(
             f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
@@ -64,7 +64,7 @@ async def process_help_command(message: types.Message):
     if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
         await db.set_active(message.from_user.id, 1)
         if message.chat.type == 'private':
-            await message.reply("Техническая поддержка магазина: @AsuraStore_admin")
+            await message.reply("Техническая поддержка магазина: @AsuraStore_helper")
     else:
         await message.answer(
             f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')

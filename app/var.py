@@ -14,7 +14,7 @@ dp = Dispatcher(bot=bot, storage=storage)
 
 moscow_tz = pytz.timezone('Europe/Moscow')
 
-NEWS_ID = '@asurastore_news'
+NEWS_ID = '@tigigiitjg'
 REVIEWS_ID = '@asurastore_reviews'
 
 
