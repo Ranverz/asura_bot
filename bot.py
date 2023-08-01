@@ -15,6 +15,7 @@ from handlers.discord_hnd import reg_hand_discord
 from handlers.genshin_hnd import reg_hand_genshin
 from handlers.honkai_hnd import reg_hand_honkai
 from handlers.tg_hnd import reg_hand_tg
+from handlers.yand_hnd import reg_hand_ya
 
 from dotenv import load_dotenv
 
@@ -339,6 +340,7 @@ reg_hand_discord()
 reg_hand_genshin()
 reg_hand_honkai()
 reg_hand_tg()
+reg_hand_ya()
 
 
 @dp.message_handler()

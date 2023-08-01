@@ -152,6 +152,10 @@ keyboard_buy_tg_1y = InlineKeyboardMarkup(row_width=1)
 keyboard_buy_tg_1y.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_tg_1y'),
                        InlineKeyboardButton(text='Назад', callback_data='buy_tg_back'))
 
+keyboard_buy_ya = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_ya.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_ya'),
+                    InlineKeyboardButton(text='Назад', callback_data='buy_ya_back'))
+
 keyboard_main = ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard_main.add('Товары', 'Профиль').add('Руководство', 'Помощь')
 
@@ -169,6 +173,7 @@ keyboard_profile.add(InlineKeyboardButton(text='Пополнить', callback_da
 keyboard_stock_inl = InlineKeyboardMarkup(row_width=1)
 keyboard_stock_inl.add(InlineKeyboardButton(text='Discord Nitro', callback_data='btndiscord'),
                        InlineKeyboardButton(text='Telegram Premium', callback_data='btntg'),
+                       InlineKeyboardButton(text='Яндекс Плюс', callback_data='btnyandex'),
                        InlineKeyboardButton(text='Genshin Impact', callback_data='btngenshin'),
                        InlineKeyboardButton(text='Honkai: Star Rail', callback_data='btnhonkai'),
                        ),
