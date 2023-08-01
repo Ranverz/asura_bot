@@ -19,7 +19,7 @@ async def process_callback_button_other_s(callback_query: types.CallbackQuery):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await bot.send_message(chat_id=callback_query.from_user.id,
-                                   text='Для покупки цифровых товаров, не находящихся в ассортименте напишите @AsuraStore_helper, с названием товара, который вы хотели бы купить.')
+                                   text='Для покупки цифровых товаров, не находящихся в ассортименте напишите @AsuraStore_helper, с названием товара, который вы хотели бы купить.\n(доступны PS Store, Chatgpt, Netflix, Youtube premium, Patreon и многие другие, просто напишите свое пожелание и по возможности мы купим вам то, в чем вы нуждаетесь)')
         else:
             await callback_query.answer(
                 f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
