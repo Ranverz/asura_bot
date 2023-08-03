@@ -81,7 +81,10 @@ async def top_up(callback: types.CallbackQuery):
         await db.set_active(callback.from_user.id, 1)
         # await bot.delete_message(callback.from_user.id, callback.message.message_id)
         await NewOrder.amount.set()
-        await bot.send_message(callback.from_user.id, f"Введите сумму для пополнения", reply_markup=kb.choose_insert)
+        await bot.send_message(callback.from_user.id,
+                               f'''Введите сумму для пополнения, минимальная сумма - 5 рублей
+(Через платежную систему комиссия 3%, для пополнения по номеру карты напишите в личные сообщения @AsuraStore_helper).''',
+                               reply_markup=kb.choose_insert)
     else:
         await callback.answer(
             f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
@@ -130,19 +133,19 @@ async def create_p(message: types.Message, state: FSMContext):
                     comment = f'{message.from_user.id}.{random.randint(1000, 9999)}'
                 else:
                     await bot.send_message(message.from_user.id,
-                                           'Введите сумму для пополнения, минимальная сумма - 5 рублей. Сумма пополнения должна быть целым числом без копеек.\n\nЧтобы отменить пополнение или использовать другой функционал бота нажмите кнопку "Отмена"')
+                                           'Введите сумму для пополнения, минимальная сумма - 5 рублей.\nСумма пополнения должна быть целым числом без копеек.\n\nЧтобы отменить пополнение или использовать другой функционал бота нажмите кнопку "Отмена"')
 
             quickpay = Quickpay(
                 receiver="4100118098927795",
                 quickpay_form="shop",
                 targets="Sponsor this project",
                 paymentType="SB",
-                sum=data['amount'],
+                sum=data['amount'] / 0.97,
                 label=comment,
             )
 
             await bot.send_message(message.from_user.id,
-                                   f'''Оплатите {data['amount']}₽\nУникальный номер:{comment}\nСсылка:{quickpay.redirected_url}''',
+                                   f'''Оплатите {data['amount'] / 0.97}₽\nУникальный номер:{comment}\nСсылка:{quickpay.redirected_url}''',
                                    reply_markup=kb.buy_menu(url=quickpay.redirected_url, bill=comment))
             await NewOrder.next()
     else:
