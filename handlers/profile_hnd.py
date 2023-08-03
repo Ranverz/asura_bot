@@ -83,7 +83,7 @@ async def top_up(callback: types.CallbackQuery):
         await NewOrder.amount.set()
         await bot.send_message(callback.from_user.id,
                                f'''Введите сумму для пополнения, минимальная сумма - 5 рублей
-(Через платежную систему комиссия 3%, для пополнения по номеру карты напишите в личные сообщения @AsuraStore_helper).''',
+(Через платежную систему комиссия 3%, для пополнения по номеру карты(сбербанк, тинькофф)  напишите в личные сообщения @AsuraStore_helper).''',
                                reply_markup=kb.choose_insert)
     else:
         await callback.answer(
@@ -181,9 +181,9 @@ async def check_pa(callback: types.CallbackQuery, state: FSMContext):
                     amm = data['amount']
                 await state.finish()
                 await callback.message.delete()
+                await db.add_money(callback.from_user.id, amm)
                 await bot.send_message(callback.from_user.id,
                                        f'Баланс успешно пополнен на {amm}₽\nНомер транзакции: {comm}')
-                await db.add_money(callback.from_user.id, amm)
 
             else:
                 await bot.send_message(callback.from_user.id, 'Оплата не найдена')
