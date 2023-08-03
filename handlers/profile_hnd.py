@@ -1,4 +1,5 @@
 import os
+from math import ceil
 
 from yoomoney import Quickpay, Client
 
@@ -145,7 +146,7 @@ async def create_p(message: types.Message, state: FSMContext):
             )
 
             await bot.send_message(message.from_user.id,
-                                   f'''Оплатите {data['amount'] / 0.97}₽\nУникальный номер:{comment}\nСсылка:{quickpay.redirected_url}''',
+                                   f'''Оплатите {ceil(data['amount'] / 0.97 * 100) / 100}₽\nУникальный номер:{comment}\nСсылка:{quickpay.redirected_url}''',
                                    reply_markup=kb.buy_menu(url=quickpay.redirected_url, bill=comment))
             await NewOrder.next()
     else:
