@@ -1,5 +1,6 @@
+import datetime
 import os
-from math import ceil
+from math import floor
 
 from yoomoney import Quickpay, Client
 
@@ -12,7 +13,6 @@ from aiogram.dispatcher import FSMContext
 
 from app import keyboards as kb
 
-import random
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -84,7 +84,7 @@ async def top_up(callback: types.CallbackQuery):
         await NewOrder.amount.set()
         await bot.send_message(callback.from_user.id,
                                f'''Введите сумму для пополнения, минимальная сумма - 5 рублей
-(Через платежную систему комиссия 3%, для пополнения по номеру карты(сбербанк, тинькофф)  напишите в личные сообщения @AsuraStore_helper).''',
+(Через платежную систему комиссия 3%, для пополнения по номеру карты(сбербанк, тинькофф) напишите в личные сообщения @AsuraStore_helper).''',
                                reply_markup=kb.choose_insert)
     else:
         await callback.answer(
@@ -131,7 +131,7 @@ async def create_p(message: types.Message, state: FSMContext):
             async with state.proxy() as data:
                 if message.text.isnumeric() and int(message.text) >= 5:
                     data['amount'] = int(message.text)
-                    comment = f'{message.from_user.id}.{random.randint(1000, 9999)}'
+                    comment = f'{message.from_user.id}.{datetime.datetime.now()}'
                 else:
                     await bot.send_message(message.from_user.id,
                                            'Введите сумму для пополнения, минимальная сумма - 5 рублей.\nСумма пополнения должна быть целым числом без копеек.\n\nЧтобы отменить пополнение или использовать другой функционал бота нажмите кнопку "Отмена"')
@@ -146,7 +146,7 @@ async def create_p(message: types.Message, state: FSMContext):
             )
 
             await bot.send_message(message.from_user.id,
-                                   f'''Оплатите {ceil(data['amount'] / 0.97 * 100) / 100}₽\nУникальный номер:{comment}\nСсылка:{quickpay.redirected_url}''',
+                                   f'''Оплатите {floor(data['amount'] / 0.97 * 100) / 100}₽\nСсылка:{quickpay.redirected_url}''',
                                    reply_markup=kb.buy_menu(url=quickpay.redirected_url, bill=comment))
             await NewOrder.next()
     else:
@@ -161,21 +161,8 @@ async def check_pa(callback: types.CallbackQuery, state: FSMContext):
         await db.set_active(callback.from_user.id, 1)
         history = client.operation_history(label=callback.data[7:])
 
-        # for operation in history.operations:
-        #     print()
-        #     print("Operation:", operation.operation_id)
-        #     print("\tStatus     -->", operation.status)
-        #     print("\tDatetime   -->", operation.datetime)
-        #     print("\tTitle      -->", operation.title)
-        #     print("\tPattern id -->", operation.pattern_id)
-        #     print("\tDirection  -->", operation.direction)
-        #     print("\tAmount     -->", operation.amount)
-        #     print("\tLabel      -->", operation.label)
-        #     print("\tType       -->", operation.type)
-
         try:
             stat = history.operations[0].status
-            comm = history.operations[0].label
 
             if stat == 'success':
                 async with state.proxy() as data:
@@ -184,7 +171,7 @@ async def check_pa(callback: types.CallbackQuery, state: FSMContext):
                 await callback.message.delete()
                 await db.add_money(callback.from_user.id, amm)
                 await bot.send_message(callback.from_user.id,
-                                       f'Баланс успешно пополнен на {amm}₽\nНомер транзакции: {comm}')
+                                       f'Ваш баланс успешно пополнен на {amm}₽')
 
             else:
                 await bot.send_message(callback.from_user.id, 'Оплата не найдена')
