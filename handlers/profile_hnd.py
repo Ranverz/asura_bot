@@ -70,9 +70,9 @@ async def show_purchased_history(call: types.CallbackQuery):
                     formatted_ans += f"Номер покупки: {c[0]}\nТовар: {c[2]}\nЦена: {c[3]}₽\nДата покупки(гг-мм-дд): {c[4].split('.')[0]}\n\n"
                 await call.message.answer(formatted_ans)
             else:
-                await call.message.answer('Вы не совершили ни одной покупки')
+                await call.answer(text='Вы не совершили ни одной покупки', show_alert=True)
         else:
-            await call.answer(
+            await call.message.answer(
                 f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
             await db.set_active(call.from_user.id, 0)
 
@@ -84,12 +84,16 @@ async def top_up(callback: types.CallbackQuery):
         # await bot.delete_message(callback.from_user.id, callback.message.message_id)
         await NewOrder.amount.set()
         await bot.send_message(callback.from_user.id,
-                               f'''Введите сумму для пополнения, минимальная сумма - 5 рублей
-(Через платежную систему комиссия 3%, для пополнения по номеру карты(сбербанк, тинькофф) напишите в личные сообщения @AsuraStore_helper).''',
+                               f'''
+Введите сумму для пополнения, минимальная сумма - 5 рублей
+
+Через платежную систему(Юмани) комиссия 3% с банковских карт, с баланса Юмани комиссии нет. 
+
+Для пополнения по номеру карты(сбербанк, тинькофф) напишите в личные сообщения @AsuraStore_helper.''',
                                reply_markup=kb.choose_insert)
     else:
-        await callback.answer(
-            f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+        await callback.message.answer(
+            f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news', )
         await db.set_active(callback.from_user.id, 0)
 
 
@@ -134,8 +138,13 @@ async def create_p(message: types.Message, state: FSMContext):
                     data['amount'] = int(message.text)
                     comment = f'{message.from_user.id}.{datetime.datetime.now()}'
                 else:
-                    await bot.send_message(message.from_user.id,
-                                           'Введите сумму для пополнения, минимальная сумма - 5 рублей.\nСумма пополнения должна быть целым числом без копеек.\n\nЧтобы отменить пополнение или использовать другой функционал бота нажмите кнопку "Отмена"')
+                    await message.answer(
+                        '''
+Введите сумму для пополнения, минимальная сумма - 5 рублей.
+Сумма пополнения должна быть целым числом без копеек.
+
+Чтобы отменить пополнение или использовать другой функционал бота нажмите кнопку "Отмена"''',
+                        reply_markup=kb.choose_insert)
 
             quickpay = Quickpay(
                 receiver="4100118098927795",
@@ -171,14 +180,13 @@ async def check_pa(callback: types.CallbackQuery, state: FSMContext):
                 await state.finish()
                 await callback.message.delete()
                 await db.add_money(callback.from_user.id, amm)
-                await bot.send_message(callback.from_user.id,
-                                       f'Ваш баланс успешно пополнен на {amm}₽')
+                await callback.message.answer(f'Ваш баланс успешно пополнен на {amm}₽')
 
             else:
-                await bot.send_message(callback.from_user.id, 'Оплата не найдена')
+                await callback.answer(text='Оплата не найдена', show_alert=True)
 
         except IndexError:
-            await bot.send_message(callback.from_user.id, 'Оплата не найдена')
+            await callback.answer(text='Оплата не найдена', show_alert=True)
     else:
         await callback.answer(
             f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
