@@ -1,7 +1,8 @@
 import datetime
 import os
-from math import floor
+from math import ceil
 
+from aiogram.types import ParseMode
 from yoomoney import Quickpay, Client
 
 from app.var import dp, bot, check_sub_channel, NEWS_ID
@@ -42,12 +43,12 @@ async def process_profile_command(message: types.Message):
                     f'''Профиль
 Имя: {message.from_user.first_name}
 Логин: @{message.from_user.username}
-ID: {message.from_user.id}
+ID: <code>{message.from_user.id}</code>
 Дата регистрации: {reg_date}
 
 Баланс: {balance}₽
 Количество покупок: {bought_items}''',
-                    reply_markup=kb.keyboard_profile,
+                    reply_markup=kb.keyboard_profile, parse_mode=ParseMode.HTML
                 )
         else:
             await message.answer(
@@ -146,7 +147,7 @@ async def create_p(message: types.Message, state: FSMContext):
             )
 
             await bot.send_message(message.from_user.id,
-                                   f'''Оплатите {floor(data['amount'] / 0.97 * 100) / 100}₽\nСсылка:{quickpay.redirected_url}''',
+                                   f'''Оплатите {ceil(data['amount'] / 0.97 * 100) / 100}₽\nСсылка:{quickpay.redirected_url}''',
                                    reply_markup=kb.buy_menu(url=quickpay.redirected_url, bill=comment))
             await NewOrder.next()
     else:

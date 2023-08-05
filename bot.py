@@ -1,7 +1,7 @@
 import aiogram.utils.exceptions
 from aiogram import types
 from aiogram.utils import executor
-from aiogram.types.message import ContentType
+from aiogram.types.message import ContentType, ParseMode
 
 import os
 
@@ -39,8 +39,13 @@ async def process_start_command(message: types.Message):
                 await db.set_active(message.from_user.id, 1)
                 z = await db.cmd_start_db(message.from_user.id)
                 await message.answer(
-                    f"Привет, {message.from_user.first_name}! \nДобро пожаловать в магазин\n\nНовости: {NEWS_ID}\nОтзывы: {REVIEWS_ID}",
-                    reply_markup=kb.keyboard_main)
+                    f'''
+Привет, {message.from_user.first_name}!
+Добро пожаловать в магазин
+
+<a href='https://t.me/asurastore_news'>Новости</a> | <a href='https://t.me/asurastore_reviews'>Отзывы</a>''',
+
+                    reply_markup=kb.keyboard_main, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
                 if z:
                     await bot.send_message(adm_id,
                                            f'Новый пользователь: {message.from_user.full_name}\n@{message.from_user.username}\n\nВсего пользователей:{z}')
