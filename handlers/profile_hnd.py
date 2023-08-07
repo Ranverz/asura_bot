@@ -74,11 +74,12 @@ async def show_purchased_history(call: types.CallbackQuery):
                 try:
                     await call.message.answer(formatted_ans)
                 except aiogram.utils.exceptions.MessageIsTooLong:
-                    async with aiofiles.open('purchase_list_asura.txt', 'w', encoding='utf-8') as file:
+                    async with aiofiles.open(f'purchase_list_for_{call.from_user.id}.txt', 'w',
+                                             encoding='utf-8') as file:
                         await file.write(formatted_ans)
-                    document = types.input_file.InputFile('purchase_list_asura.txt')
+                    document = types.input_file.InputFile(f'purchase_list_for_{call.from_user.id}.txt')
                     await bot.send_document(chat_id=call.message.chat.id, document=document)
-                    os.remove('purchase_list_asura.txt')
+                    os.remove(f'purchase_list_for_{call.from_user.id}.txt')
             else:
                 await call.answer(text='Вы не совершили ни одной покупки', show_alert=True)
         else:
