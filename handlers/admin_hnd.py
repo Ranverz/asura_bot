@@ -104,7 +104,7 @@ async def addmn_f(message: types.Message):
                     mn = text.split(' ')[1]
                     if await db.user_exists(id_us):
                         if await db.user_is_active(id_us) and await check_sub_channel(
-                                await bot.get_chat_member(chat_id=NEWS_ID, user_id=id_us)):
+                                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=id_us)):
                             try:
                                 await bot.send_message(id_us, f'Ваш баланс пополнен на {mn}₽ админом')
                                 await db.add_money(id_us, mn)
