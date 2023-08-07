@@ -42,7 +42,7 @@ async def process_start_command(message: types.Message):
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
         if message.chat.type == 'private':
-            if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+            if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
                 await db.set_active(message.from_user.id, 1)
                 z = await db.cmd_start_db(message.from_user.id)
                 await message.answer(
@@ -50,7 +50,7 @@ async def process_start_command(message: types.Message):
 Привет, {message.from_user.first_name}!
 Добро пожаловать в магазин
 
-<a href='https://t.me/asurastore_news'>Новости</a> | <a href='https://t.me/asurastore_reviews'>Отзывы</a>''',
+<a href='https://t.me/{NEWS_ID}'>Новости</a> | <a href='https://t.me/{REVIEWS_ID}'>Отзывы</a>''',
 
                     reply_markup=kb.keyboard_main, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
                 if z:
@@ -61,7 +61,8 @@ async def process_start_command(message: types.Message):
                                          reply_markup=kb.keyboard_main_admin)
             else:
                 await message.answer(
-                    f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                    f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                    parse_mode=types.ParseMode.HTML)
                 await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -72,13 +73,14 @@ async def process_help_command(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.chat.type == 'private':
                 await message.reply("Техническая поддержка магазина: @AsuraStore_helper")
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -89,13 +91,14 @@ async def process_help_command(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.chat.type == 'private':
                 await message.reply("Техническая поддержка магазина: @AsuraStore_helper")
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -106,14 +109,15 @@ async def process_help_command(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.chat.type == 'private':
                 await message.reply(
                     "Нажмите на кнопку 'Товары', выберите интересующую вас категорию и вид товара, после чего следуйте инструкции")
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -124,14 +128,15 @@ async def stock_message(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.chat.type == 'private':
                 await message.answer("Доступные категории в магазине:",
                                      reply_markup=kb.keyboard_stock_inl)
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -139,36 +144,56 @@ async def stock_message(message: types.Message):
 
 @dp.callback_query_handler(text_contains='addreview_')
 async def addreview_activate_fsm(callback: types.CallbackQuery, state: FSMContext):
-    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback.from_user.id)):
-        await db.set_active(callback.from_user.id, 1)
-        await Newreviewm.id_pr_mark.set()
-        id_pr_for_rev = callback.message.reply_markup.inline_keyboard[0][0].callback_data.split('_')[1]
-        async with state.proxy() as data:
-            data['id_pr_mark'] = id_pr_for_rev
-        await callback.message.answer(f'Выберите оценку для заказа номер {id_pr_for_rev}',
-                                      reply_markup=kb.keyboard_review_mark)
-        await Newreviewm.next()
+    blocked_raw = (await db.show_blocked_users())
+    blocked = list(map(lambda user: user[0], blocked_raw))
+    if callback.from_user.id not in blocked:
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback.from_user.id)):
+            await db.set_active(callback.from_user.id, 1)
+            await Newreviewm.id_pr_mark.set()
+            id_pr_for_rev = callback.message.reply_markup.inline_keyboard[0][0].callback_data.split('_')[1]
+            async with state.proxy() as data:
+                data['id_pr_mark'] = id_pr_for_rev
+            await callback.message.answer(f'Выберите оценку для заказа номер {id_pr_for_rev}',
+                                          reply_markup=kb.keyboard_review_mark)
+            await Newreviewm.next()
+        else:
+            await callback.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
+            await db.set_active(callback.from_user.id, 0)
+    else:
+        await db.set_active(callback.from_user.id, 0)
 
 
 @dp.message_handler(content_types=['text'], state=Newreviewm.rev_mark)
 async def addreview_mark(message: types.Message, state: FSMContext):
-    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
-        await db.set_active(message.from_user.id, 1)
-        if message.chat.type == 'private':
-            txt = message.text
-            async with state.proxy() as data:
-                if txt == '❤️' or txt == '👎':
-                    data['rev_mark'] = txt
-                    await Newreviewm.next()
-                    await message.answer('''Введите текст отзыва.
-                    
+    blocked_raw = (await db.show_blocked_users())
+    blocked = list(map(lambda user: user[0], blocked_raw))
+    if message.from_user.id not in blocked:
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
+            await db.set_active(message.from_user.id, 1)
+            if message.chat.type == 'private':
+                txt = message.text
+                async with state.proxy() as data:
+                    if txt == '❤️' or txt == '👎':
+                        data['rev_mark'] = txt
+                        await Newreviewm.next()
+                        await message.answer('''Введите текст отзыва.
+                        
 Пример:
 Отличный магазин. Все сделали быстро.''', reply_markup=kb.keyboard_review_text_empty)
-                elif txt == 'Не оставлять отзыв':
-                    await state.finish()
-                    await message.answer('Ваш отзыв отменен.', reply_markup=kb.keyboard_main)
-                else:
-                    await message.answer('Выберите оценку из меню снизу.')
+                    elif txt == 'Не оставлять отзыв':
+                        await state.finish()
+                        await message.answer('Ваш отзыв отменен.', reply_markup=kb.keyboard_main)
+                    else:
+                        await message.answer('Выберите оценку из меню снизу.')
+        else:
+            await message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
+            await db.set_active(message.from_user.id, 0)
+    else:
+        await db.set_active(message.from_user.id, 0)
 
 
 @dp.callback_query_handler(text='review_notext', state=Newreviewm.rev_confirm)
@@ -176,7 +201,7 @@ async def addreview_notext(callback: types.CallbackQuery, state: FSMContext):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback.from_user.id)):
             await db.set_active(callback.from_user.id, 1)
             async with state.proxy() as data:
                 mr = data['rev_mark']
@@ -194,7 +219,8 @@ async def addreview_notext(callback: types.CallbackQuery, state: FSMContext):
             await state.finish()
         else:
             await callback.message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback.from_user.id, 0)
     else:
         await db.set_active(callback.from_user.id, 0)
@@ -205,7 +231,7 @@ async def addreview_text(message: types.Message, state: FSMContext):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.chat.type == 'private':
                 txt = message.text
@@ -233,7 +259,8 @@ async def addreview_text(message: types.Message, state: FSMContext):
 Отличный магазин. Все сделали быстро.''')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -255,14 +282,17 @@ async def echo_message(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             await message.reply(
                 'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
+    else:
+        await db.set_active(message.from_user.id, 0)
 
 
 @dp.message_handler(content_types=ContentType.ANY)
@@ -270,13 +300,16 @@ async def unknown_message(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await message.reply(
                 'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
+    else:
+        await db.set_active(message.from_user.id, 0)
 
 
 if __name__ == '__main__':

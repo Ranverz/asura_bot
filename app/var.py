@@ -14,8 +14,8 @@ dp = Dispatcher(bot=bot, storage=storage)
 
 moscow_tz = pytz.timezone('Europe/Moscow')
 
-NEWS_ID = '@asurastore_news'
-REVIEWS_ID = '@asurastore_reviews'
+NEWS_ID = 'asurastore_news'
+REVIEWS_ID = 'asurastore_reviews'
 
 
 async def check_sub_channel(chat_member):

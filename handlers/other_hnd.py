@@ -16,7 +16,8 @@ async def process_callback_button_other_s(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await callback_query.message.answer(
@@ -24,19 +25,30 @@ async def process_callback_button_other_s(callback_query: types.CallbackQuery):
                 reply_markup=kb.keyboard_other_back)
         else:
             await callback_query.message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 async def pr_other_back_btn(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await callback_query.message.answer(text='Доступные категории в магазине:',
                                                 reply_markup=kb.keyboard_stock_inl)
+        else:
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
+            await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 def reg_hand_other():

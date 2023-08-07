@@ -18,15 +18,19 @@ async def btg(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await bot.send_message(chat_id=callback_query.from_user.id, text='Genshin Impact',
                                    reply_markup=kb.keyboard_genshin)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='gnsh_moon')
@@ -34,7 +38,8 @@ async def pr_gnsh_moon(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_moon = await db.show_price('gnsh_moon')
@@ -53,9 +58,12 @@ async def pr_gnsh_moon(callback_query: types.CallbackQuery):
 💵 Цена: {price_moon}₽''',
                                    reply_markup=kb.keyboard_genshin_moon)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='gnsh_60k')
@@ -63,7 +71,8 @@ async def pr_gnsh_60k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_60k = await db.show_price('gnsh_60k')
@@ -83,9 +92,12 @@ async def pr_gnsh_60k(callback_query: types.CallbackQuery):
 💵 Цена: {price_60k}₽''',
                                    reply_markup=kb.keyboard_genshin_60k)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='gnsh_300k')
@@ -93,7 +105,8 @@ async def pr_gnsh_300k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_300k = await db.show_price('gnsh_300k')
@@ -113,9 +126,12 @@ async def pr_gnsh_300k(callback_query: types.CallbackQuery):
 💵 Цена: {price_300k}₽''',
                                    reply_markup=kb.keyboard_genshin_300k)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='gnsh_980k')
@@ -123,7 +139,8 @@ async def pr_gnsh_980k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_980k = await db.show_price('gnsh_980k')
@@ -143,9 +160,12 @@ async def pr_gnsh_980k(callback_query: types.CallbackQuery):
 💵 Цена: {price_980k}₽''',
                                    reply_markup=kb.keyboard_genshin_980k)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='gnsh_1980k')
@@ -153,7 +173,8 @@ async def pr_gnsh_1980k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_1980k = await db.show_price('gnsh_1980k')
@@ -173,9 +194,12 @@ async def pr_gnsh_1980k(callback_query: types.CallbackQuery):
 💵 Цена: {price_1980k}₽''',
                                    reply_markup=kb.keyboard_genshin_1980k)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='gnsh_3280k')
@@ -183,7 +207,8 @@ async def pr_gnsh_3280k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_3280k = await db.show_price('gnsh_3280k')
@@ -203,9 +228,12 @@ async def pr_gnsh_3280k(callback_query: types.CallbackQuery):
 💵 Цена: {price_3280k}₽''',
                                    reply_markup=kb.keyboard_genshin_3280k)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='gnsh_6480k')
@@ -213,7 +241,8 @@ async def pr_gnsh_6480k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_6480k = await db.show_price('gnsh_6480k')
@@ -233,9 +262,12 @@ async def pr_gnsh_6480k(callback_query: types.CallbackQuery):
 💵 Цена: {price_6480k}₽''',
                                    reply_markup=kb.keyboard_genshin_6480k)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='gnsh_back')
@@ -243,15 +275,19 @@ async def pr_gnsh_back(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await bot.send_message(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
                                    reply_markup=kb.keyboard_stock_inl)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_gnsh_back')
@@ -259,15 +295,19 @@ async def pr_gnsh_buy_back(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await bot.send_message(chat_id=callback_query.from_user.id, text='Genshin Impact',
                                    reply_markup=kb.keyboard_genshin)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_gnsh_moon')
@@ -275,7 +315,8 @@ async def pr_gnsh_buy_moon(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -300,9 +341,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_gnsh_60k')
@@ -310,7 +354,8 @@ async def pr_gnsh_buy_60k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -335,9 +380,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_gnsh_300k')
@@ -345,7 +393,8 @@ async def pr_gnsh_buy_300k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -370,9 +419,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_gnsh_980k')
@@ -380,7 +432,8 @@ async def pr_gnsh_buy_980k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -405,9 +458,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_gnsh_1980k')
@@ -415,7 +471,8 @@ async def pr_gnsh_buy_1980k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -440,9 +497,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_gnsh_3280k')
@@ -450,7 +510,8 @@ async def pr_gnsh_buy_3280k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -475,9 +536,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_gnsh_6480k')
@@ -485,7 +549,8 @@ async def pr_gnsh_buy_6480k(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -510,9 +575,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 def reg_hand_genshin():

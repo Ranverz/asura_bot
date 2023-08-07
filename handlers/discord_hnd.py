@@ -18,15 +18,19 @@ async def process_callback_button_ds(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await bot.send_message(chat_id=callback_query.from_user.id, text='Discord nitro',
                                    reply_markup=kb.keyboard_nitro)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='ntr_1m_no_log')
@@ -34,7 +38,8 @@ async def process_callback_button_ds_1m_noreg(callback_query: types.CallbackQuer
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_nitro_1m_noreg = await db.show_price('dsntr_1m_noreg')
@@ -54,9 +59,12 @@ async def process_callback_button_ds_1m_noreg(callback_query: types.CallbackQuer
 💵 Цена: {price_nitro_1m_noreg}₽''',
                                    reply_markup=kb.keyboard_buy_nitro_1m_noreg)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='ntr_1y_no_log')
@@ -64,7 +72,8 @@ async def process_callback_button_ds_1y_noreg(callback_query: types.CallbackQuer
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_nitro_1y_noreg = await db.show_price('dsntr_1y_noreg')
@@ -84,9 +93,12 @@ async def process_callback_button_ds_1y_noreg(callback_query: types.CallbackQuer
 💵 Цена: {price_nitro_1y_noreg}₽''',
                                    reply_markup=kb.keyboard_buy_nitro_1y_noreg)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_buy_nitro_1y_qr')
@@ -94,7 +106,8 @@ async def process_callback_button_ds_1y_qr(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_nitro_1y_qr = await db.show_price('dsntr_1y_qr')
@@ -119,9 +132,12 @@ async def process_callback_button_ds_1y_qr(callback_query: types.CallbackQuery):
     ''',
                                    reply_markup=kb.keyboard_buy_nitro_1y_qr)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_buy_nitro_1m_qr')
@@ -129,7 +145,8 @@ async def process_callback_button_ds_1m_qr(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_nitro_1m_qr = await db.show_price('dsntr_1m_qr')
@@ -155,9 +172,12 @@ async def process_callback_button_ds_1m_qr(callback_query: types.CallbackQuery):
 ''',
                                    reply_markup=kb.keyboard_buy_nitro_1m_qr)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='ntr_back')
@@ -165,15 +185,19 @@ async def process_callback_button_ds_back(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await bot.send_message(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
                                    reply_markup=kb.keyboard_stock_inl)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_back')
@@ -181,15 +205,19 @@ async def process_callback_button_ds_buy_back(callback_query: types.CallbackQuer
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await bot.send_message(chat_id=callback_query.from_user.id, text='Discord nitro',
                                    reply_markup=kb.keyboard_nitro)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_buy_nitro_1y_qr')
@@ -197,7 +225,8 @@ async def process_buy_nitro_1y_qr(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -222,9 +251,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_buy_nitro_1m_qr')
@@ -232,7 +264,8 @@ async def process_buy_nitro_1m_qr(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -257,9 +290,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_buy_nitro_1m_noreg')
@@ -267,7 +303,8 @@ async def process_buy_nitro_1m_noreg(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -292,9 +329,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_buy_nitro_1y_noreg')
@@ -302,7 +342,8 @@ async def process_buy_nitro_1y_noreg(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -327,9 +368,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 def reg_hand_discord():

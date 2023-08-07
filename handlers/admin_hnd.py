@@ -14,7 +14,7 @@ adm_id = int(os.getenv('ADMIN_ID'))
 
 # @dp.message_handler(text='Админ-панель')
 async def show_admin_panel(message: types.Message):
-    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+    if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
         blocked_raw = (await db.show_blocked_users())
         blocked = list(map(lambda user: user[0], blocked_raw))
         if message.from_user.id not in blocked:
@@ -27,7 +27,8 @@ async def show_admin_panel(message: types.Message):
                         'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
 
 
@@ -36,7 +37,7 @@ async def show_active_comand(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.chat.type == 'private':
                 if message.from_user.id == adm_id:
@@ -50,7 +51,8 @@ async def show_active_comand(message: types.Message):
 
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -61,7 +63,7 @@ async def sendall_f(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda userz: userz[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.chat.type == 'private':
                 if message.from_user.id == adm_id:
@@ -81,7 +83,8 @@ async def sendall_f(message: types.Message):
                         'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -92,7 +95,7 @@ async def addmn_f(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.chat.type == 'private':
                 if message.from_user.id == adm_id:
@@ -120,7 +123,8 @@ async def addmn_f(message: types.Message):
                         'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -131,7 +135,7 @@ async def priceadmn(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.from_user.id == adm_id:
                 text = message.text[9:]
@@ -145,7 +149,8 @@ async def priceadmn(message: types.Message):
                     'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -156,7 +161,7 @@ async def pr_block_list_comm(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.from_user.id == adm_id:
                 await message.answer(f'Заблокированные пользователи: {blocked}')
@@ -165,7 +170,8 @@ async def pr_block_list_comm(message: types.Message):
                     'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -176,13 +182,14 @@ async def pr_block_command(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.from_user.id == adm_id:
                 id_us = message.text[7:]
                 if await db.user_exists(id_us):
                     await db.set_block_user_status(id_us, 1)
                     await message.answer(f'Пользователь {id_us} заблокирован')
+                    await db.set_active(id_us, 0)
                 else:
                     await message.answer(f'Пользователь {id_us} не зарегистрирован')
             else:
@@ -190,7 +197,8 @@ async def pr_block_command(message: types.Message):
                     'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
     else:
         await db.set_active(message.from_user.id, 0)
@@ -201,7 +209,7 @@ async def pr_unblock_command(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.from_user.id == adm_id:
                 id_us = message.text[9:]
@@ -215,8 +223,11 @@ async def pr_unblock_command(message: types.Message):
                     'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
         else:
             await message.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(message.from_user.id, 0)
+    else:
+        await db.set_active(message.from_user.id, 0)
 
 
 def reg_hand_admin():

@@ -18,7 +18,8 @@ async def process_callback_button_xbox(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             price_xbox = await db.show_price('xbox')
@@ -40,9 +41,12 @@ async def process_callback_button_xbox(callback_query: types.CallbackQuery):
 💵 Цена: {price_xbox}₽''',
                                    reply_markup=kb.keyboard_buy_xbox)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_xbox_back')
@@ -50,15 +54,19 @@ async def process_callback_button_xbox_back(callback_query: types.CallbackQuery)
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             await callback_query.message.delete()
             await bot.send_message(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
                                    reply_markup=kb.keyboard_stock_inl)
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 # @dp.callback_query_handler(text='buy_buy_xbox')
@@ -66,7 +74,8 @@ async def process_buy_xbox(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback_query.from_user.id)):
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
@@ -91,9 +100,12 @@ Cвяжитесь с администратором для получения т
             else:
                 await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
         else:
-            await callback_query.answer(
-                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
             await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
 
 
 def reg_hand_xbox():
