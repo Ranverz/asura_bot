@@ -1,13 +1,20 @@
-from aiogram.types import InlineKeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup
+from aiogram.types import InlineKeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup, WebAppInfo
 
 
 def buy_menu(isurl=True, url='', bill=''):
     yomoney_menu = InlineKeyboardMarkup(row_width=1)
     if isurl:
-        yomoney_menu.add(InlineKeyboardButton(text='Оплатить', url=url))
+        webapp = WebAppInfo(url=url)
+        yomoney_menu.add(InlineKeyboardButton(text='Оплатить', web_app=webapp))
     yomoney_menu.add(InlineKeyboardButton(text='Проверить оплату', callback_data=f'check__{bill}'))
     yomoney_menu.add(InlineKeyboardButton(text='Отмена', callback_data=f'cancel_insert'))
     return yomoney_menu
+
+
+def review_kb(order_id):
+    keyboard_review = InlineKeyboardMarkup(row_width=1)
+    keyboard_review.add(InlineKeyboardButton(text='Оставить отзыв', callback_data=f'addreview_{order_id}'))
+    return keyboard_review
 
 
 choose_insert = InlineKeyboardMarkup(row_width=1)
@@ -183,7 +190,14 @@ keyboard_stock_inl.add(InlineKeyboardButton(text='Discord Nitro', callback_data=
                        InlineKeyboardButton(text='Honkai: Star Rail', callback_data='btnhonkai'),
                        InlineKeyboardButton(text='Другие сервисы', callback_data='btnotherserv'),
                        ),
-# InlineKeyboardButton(text='Csgo cheat', callback_data='cheat'),
+keyboard_other_back = InlineKeyboardMarkup(row_width=1)
+keyboard_other_back.add(InlineKeyboardButton(text='Назад ко всем категориям', callback_data='buy_other_back'))
+
+keyboard_review_text_empty = InlineKeyboardMarkup(row_width=1)
+keyboard_review_text_empty.add(InlineKeyboardButton(text='Без текста, только оценка', callback_data='review_notext'))
+
+keyboard_review_mark = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
+keyboard_review_mark.add('❤️').add('👎').add('Не оставлять отзыв')
 
 cancel = ReplyKeyboardMarkup(resize_keyboard=True)
 cancel.add('Отмена')

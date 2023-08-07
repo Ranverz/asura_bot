@@ -159,10 +159,10 @@ async def show_purchase_id(user_id, tm):
     return user[0]
 
 
-async def show_last_purchase_id(user_id):
+async def show_purchase_info(user_id, purc_id):
     user = cursor.execute(
-        '''SELECT purch_id, purc_time, name FROM history WHERE telegram_id = ? ORDER BY purch_id DESC LIMIT 1''',
-        (user_id,)).fetchone()
+        '''SELECT purc_time, name FROM history WHERE telegram_id = ? and purch_id = ?''',
+        (user_id, purc_id,)).fetchone()
     return user
 
 

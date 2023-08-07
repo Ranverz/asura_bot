@@ -81,12 +81,11 @@ async def process_buy_xbox(callback_query: types.CallbackQuery):
 Поздравляем с покупкой Xbox Game Pass на 1 месяц. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
-Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв.
 
 тип товара:Xbox Game Pass на 1 месяц
 уникальный номер: {id_p}
-                        ''')
+                        ''', reply_markup=kb.review_kb(id_p))
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Xbox Game Pass на 1 месяц''')
             else:

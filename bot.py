@@ -1,6 +1,8 @@
 from aiogram import types
 from aiogram.utils import executor
 from aiogram.types.message import ContentType, ParseMode
+from aiogram.dispatcher.filters.state import State, StatesGroup
+from aiogram.dispatcher import FSMContext
 
 import os
 
@@ -26,6 +28,12 @@ adm_id = int(os.getenv('ADMIN_ID'))
 
 async def on_startup(_):
     await db.db_start()
+
+
+class Newreviewm(StatesGroup):
+    id_pr_mark = State()
+    rev_mark = State()
+    rev_confirm = State()
 
 
 @dp.message_handler(commands=['start'])
@@ -129,21 +137,100 @@ async def stock_message(message: types.Message):
         await db.set_active(message.from_user.id, 0)
 
 
-@dp.message_handler(commands=['review'])
-async def addreview(message: types.Message):
+@dp.callback_query_handler(text_contains='addreview_')
+async def addreview_activate_fsm(callback: types.CallbackQuery, state: FSMContext):
+    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback.from_user.id)):
+        await db.set_active(callback.from_user.id, 1)
+        await Newreviewm.id_pr_mark.set()
+        id_pr_for_rev = callback.message.reply_markup.inline_keyboard[0][0].callback_data.split('_')[1]
+        async with state.proxy() as data:
+            data['id_pr_mark'] = id_pr_for_rev
+        await callback.message.answer(f'Выберите оценку для заказа номер {id_pr_for_rev}',
+                                      reply_markup=kb.keyboard_review_mark)
+        await Newreviewm.next()
+
+
+@dp.message_handler(content_types=['text'], state=Newreviewm.rev_mark)
+async def addreview_mark(message: types.Message, state: FSMContext):
+    if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
+        await db.set_active(message.from_user.id, 1)
+        if message.chat.type == 'private':
+            txt = message.text
+            async with state.proxy() as data:
+                if txt == '❤️' or txt == '👎':
+                    data['rev_mark'] = txt
+                    await Newreviewm.next()
+                    await message.answer('''Введите текст отзыва.
+                    
+Пример:
+Отличный магазин. Все сделали быстро.''', reply_markup=kb.keyboard_review_text_empty)
+                elif txt == 'Не оставлять отзыв':
+                    await state.finish()
+                    await message.answer('Ваш отзыв отменен.', reply_markup=kb.keyboard_main)
+                else:
+                    await message.answer('Выберите оценку из меню снизу.')
+
+
+@dp.callback_query_handler(text='review_notext', state=Newreviewm.rev_confirm)
+async def addreview_notext(callback: types.CallbackQuery, state: FSMContext):
+    blocked_raw = (await db.show_blocked_users())
+    blocked = list(map(lambda user: user[0], blocked_raw))
+    if callback.from_user.id not in blocked:
+        if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=callback.from_user.id)):
+            await db.set_active(callback.from_user.id, 1)
+            async with state.proxy() as data:
+                mr = data['rev_mark']
+                id_pr = data['id_pr_mark']
+            pr = await db.show_purchase_info(callback.from_user.id, id_pr)
+            await bot.send_message(chat_id=REVIEWS_ID, text=f'''
+Номер заказа: {id_pr}
+Время заказа: {pr[0]}
+Тип товара: {pr[1]}
+
+Пользователь: @{callback.from_user.username}
+Оценка: {mr}
+Отзыв: [Пользователь решил не оставлять текст.]''')
+            await callback.message.answer('Ваш отзыв опубликован, без текста', reply_markup=kb.keyboard_main)
+            await state.finish()
+        else:
+            await callback.message.answer(
+                f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')
+            await db.set_active(callback.from_user.id, 0)
+    else:
+        await db.set_active(callback.from_user.id, 0)
+
+
+@dp.message_handler(content_types=['text'], state=Newreviewm.rev_confirm)
+async def addreview_text(message: types.Message, state: FSMContext):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if message.from_user.id not in blocked:
         if await check_sub_channel(await bot.get_chat_member(chat_id=NEWS_ID, user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
-            text = message.text[8:]
-            try:
-                pr = await db.show_last_purchase_id(message.from_user.id)
+            if message.chat.type == 'private':
+                txt = message.text
+                if txt != '':
+                    async with state.proxy() as data:
+                        mr = data['rev_mark']
+                        id_pr = data['id_pr_mark']
+                    pr = await db.show_purchase_info(message.from_user.id, id_pr)
+                    await bot.send_message(chat_id=REVIEWS_ID,
+                                           text=f'''
+Номер заказа: {id_pr}
+Время заказа: {pr[0]}
+Тип товара: {pr[1]}
 
-                await bot.send_message(chat_id=REVIEWS_ID,
-                                       text=f'''Номер заказа {pr[0]}\nВремя заказа: {pr[1].split('.')[0]}\nТип товара: {pr[2]}\n\nПользователь: @{message.from_user.username}\n{text}''')
-            except TypeError:
-                await message.answer('Вы не совершили ни одной покупки')
+Пользователь: @{message.from_user.username}
+Оценка: {mr}
+Отзыв: {txt}''')
+
+                    await message.answer('Ваш отзыв опубликован', reply_markup=kb.keyboard_main)
+                    await state.finish()
+                else:
+                    await message.answer('''Введите текст отзыва.
+                        
+Пример:
+Отличный магазин. Все сделали быстро.''')
         else:
             await message.answer(
                 f'Для доступа к функционалу магазина, сначала подпишитесь на наш канал.\nt.me/asurastore_news')

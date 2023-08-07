@@ -1,7 +1,10 @@
 import datetime
+import io
 import os
+import aiofiles
 from math import ceil
 
+import aiogram.utils.exceptions
 from aiogram.types import ParseMode
 from yoomoney import Quickpay, Client
 
@@ -68,7 +71,14 @@ async def show_purchased_history(call: types.CallbackQuery):
             if len(profile) != 0:
                 for c in profile:
                     formatted_ans += f"Номер покупки: {c[0]}\nТовар: {c[2]}\nЦена: {c[3]}₽\nДата покупки(гг-мм-дд): {c[4].split('.')[0]}\n\n"
-                await call.message.answer(formatted_ans)
+                try:
+                    await call.message.answer(formatted_ans)
+                except aiogram.utils.exceptions.MessageIsTooLong:
+                    async with aiofiles.open('purchase_list_asura.txt', 'w', encoding='utf-8') as file:
+                        await file.write(formatted_ans)
+                    document = types.input_file.InputFile('purchase_list_asura.txt')
+                    await bot.send_document(chat_id=call.message.chat.id, document=document)
+                    os.remove('purchase_list_asura.txt')
             else:
                 await call.answer(text='Вы не совершили ни одной покупки', show_alert=True)
         else:

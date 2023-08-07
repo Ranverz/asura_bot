@@ -290,12 +290,11 @@ async def pr_gnsh_buy_moon(callback_query: types.CallbackQuery):
 Поздравляем с покупкой Благословения полой луны. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
-Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв.
 
 тип товара:Благословение полой луны
 уникальный номер: {id_p}
-                ''')
+                ''', reply_markup=kb.review_kb(id_p))
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Благословение полой луны(uid)''')
             else:
@@ -326,12 +325,11 @@ async def pr_gnsh_buy_60k(callback_query: types.CallbackQuery):
 Поздравляем с покупкой 60 Кристаллов Сотворения. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
-Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв.
 
 тип товара:60 Кристаллов Сотворения
 уникальный номер: {id_p}
-                ''')
+                ''', reply_markup=kb.review_kb(id_p))
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:60 Кристаллов Сотворения(uid)''')
             else:
@@ -362,12 +360,11 @@ async def pr_gnsh_buy_300k(callback_query: types.CallbackQuery):
 Поздравляем с покупкой 300+30 Кристаллов Сотворения. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
-Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв.
 
 тип товара:300+30 Кристаллов Сотворения
 уникальный номер: {id_p}
-                ''')
+                ''', reply_markup=kb.review_kb(id_p))
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:300+30 Кристаллов Сотворения(uid)''')
             else:
@@ -398,12 +395,11 @@ async def pr_gnsh_buy_980k(callback_query: types.CallbackQuery):
 Поздравляем с покупкой 980+110 Кристаллов Сотворения. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
-Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв.
 
 тип товара:980+110 Кристаллов Сотворения
 уникальный номер: {id_p}
-                ''')
+                ''', reply_markup=kb.review_kb(id_p))
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:980+110 Кристаллов Сотворения(uid)''')
             else:
@@ -434,12 +430,11 @@ async def pr_gnsh_buy_1980k(callback_query: types.CallbackQuery):
 Поздравляем с покупкой 1980+260 Кристаллов Сотворения. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
-Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв.
 
 тип товара:1980+260 Кристаллов Сотворения
 уникальный номер: {id_p}
-                ''')
+                ''', reply_markup=kb.review_kb(id_p))
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:1980+260 Кристаллов Сотворения(uid)''')
             else:
@@ -470,12 +465,11 @@ async def pr_gnsh_buy_3280k(callback_query: types.CallbackQuery):
 Поздравляем с покупкой 3280+600 Кристаллов Сотворения. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
-Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв.
 
 тип товара:3280+600 Кристаллов Сотворения
 уникальный номер: {id_p}
-                ''')
+                ''', reply_markup=kb.review_kb(id_p))
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:3280+600 Кристаллов Сотворения(uid)''')
             else:
@@ -506,12 +500,11 @@ async def pr_gnsh_buy_6480k(callback_query: types.CallbackQuery):
 Поздравляем с покупкой 6480+1600 Кристаллов Сотворения. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
 
-Убедительная просьба после получения товара оставить отзыв при помощи команды /review
-Пример: /review Отличный магазин.
+Убедительная просьба после получения товара оставить отзыв.
 
 тип товара:6480+1600 Кристаллов Сотворения
 уникальный номер: {id_p}
-                ''')
+                ''', reply_markup=kb.review_kb(id_p))
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:6480+1600 Кристаллов Сотворения(uid)''')
             else:
