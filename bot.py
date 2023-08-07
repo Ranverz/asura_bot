@@ -207,7 +207,7 @@ async def addreview_notext(callback: types.CallbackQuery, state: FSMContext):
                 mr = data['rev_mark']
                 id_pr = data['id_pr_mark']
             pr = await db.show_purchase_info(callback.from_user.id, id_pr)
-            await bot.send_message(chat_id=REVIEWS_ID, text=f'''
+            await bot.send_message(chat_id=f'@{REVIEWS_ID}', text=f'''
 Номер заказа: {id_pr}
 Время заказа: {pr[0]}
 Тип товара: {pr[1]}
@@ -240,7 +240,7 @@ async def addreview_text(message: types.Message, state: FSMContext):
                         mr = data['rev_mark']
                         id_pr = data['id_pr_mark']
                     pr = await db.show_purchase_info(message.from_user.id, id_pr)
-                    await bot.send_message(chat_id=REVIEWS_ID,
+                    await bot.send_message(chat_id=f'@{REVIEWS_ID}',
                                            text=f'''
 Номер заказа: {id_pr}
 Время заказа: {pr[0]}

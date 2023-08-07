@@ -1,5 +1,4 @@
 import datetime
-import io
 import os
 import aiofiles
 from math import ceil
