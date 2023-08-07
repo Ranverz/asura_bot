@@ -107,10 +107,10 @@ async def top_up(callback: types.CallbackQuery):
             await NewOrder.amount.set()
             await bot.send_message(callback.from_user.id,
                                    f'''
-    Введите сумму для пополнения, минимальная сумма - 5 рублей
-    <code>Для пополнения по номеру карты(сбербанк, тинькофф) напишите в личные сообщения @AsuraStore_helper. </code>
+Введите сумму для пополнения, минимальная сумма - 5 рублей
+<code>Для пополнения по номеру карты(сбербанк, тинькофф) напишите в личные сообщения @AsuraStore_helper.</code>
     
-    Через платежную систему(Юмани) комиссия 3% с банковских карт, с баланса Юмани комиссии нет. 
+Через платежную систему(Юмани) комиссия 3% с банковских карт, с баланса Юмани комиссии нет. 
     ''',
                                    reply_markup=kb.choose_insert, parse_mode=types.ParseMode.HTML)
         else:
