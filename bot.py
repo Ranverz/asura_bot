@@ -214,7 +214,7 @@ async def addreview_notext(callback: types.CallbackQuery, state: FSMContext):
 
 Пользователь: @{callback.from_user.username}
 Оценка: {mr}
-Отзыв: [Пользователь решил не оставлять текст.]''')
+Отзыв: <code>[Пользователь решил не оставлять текст.]</code>''', parse_mode=ParseMode.HTML)
             await callback.message.answer('Ваш отзыв опубликован, без текста', reply_markup=kb.keyboard_main)
             await state.finish()
         else:

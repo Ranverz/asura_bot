@@ -21,9 +21,8 @@ async def process_callback_button_tg(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
-            await bot.send_message(chat_id=callback_query.from_user.id, text='Telegram Premium',
-                                   reply_markup=kb.keyboard_tg)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Telegram Premium',
+                                        reply_markup=kb.keyboard_tg, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -41,9 +40,8 @@ async def process_callback_button_tg_1m(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_tg_1m = await db.show_price('tg_1m')
-            await bot.send_message(chat_id=callback_query.from_user.id, text=f'''Товар: 🎈Telegram Premium QR (1 месяц)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text=f'''Товар: 🎈Telegram Premium QR (1 месяц)
 📄 Описание: 
 🎈Телеграм Премиум — это эксклюзивная подписка, которая дарит уникальные преимущества:
 • Значок подписчика: Премиум-пользователи видны по звездочке возле имени.
@@ -64,7 +62,8 @@ async def process_callback_button_tg_1m(callback_query: types.CallbackQuery):
 
 
 💵 Цена: {price_tg_1m}₽''',
-                                   reply_markup=kb.keyboard_buy_tg_1m)
+                                        reply_markup=kb.keyboard_buy_tg_1m,
+                                        message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -82,9 +81,8 @@ async def process_callback_button_tg_1y(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_tg_1y = await db.show_price('tg_1y')
-            await bot.send_message(chat_id=callback_query.from_user.id, text=f'''Товар: 🎈Telegram Premium QR (1 год)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text=f'''Товар: 🎈Telegram Premium QR (1 год)
 📄 Описание: 
 🎈Телеграм Премиум — это эксклюзивная подписка, которая дарит уникальные преимущества:
 • Значок подписчика: Премиум-пользователи видны по звездочке возле имени.
@@ -105,7 +103,8 @@ async def process_callback_button_tg_1y(callback_query: types.CallbackQuery):
 
 
 💵 Цена: {price_tg_1y}₽''',
-                                   reply_markup=kb.keyboard_buy_tg_1y)
+                                        reply_markup=kb.keyboard_buy_tg_1y,
+                                        message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -123,9 +122,9 @@ async def process_callback_button_tg_back(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
-            await bot.send_message(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
-                                   reply_markup=kb.keyboard_stock_inl)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
+                                        reply_markup=kb.keyboard_stock_inl,
+                                        message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -143,9 +142,8 @@ async def process_callback_button_tg_buy_back(callback_query: types.CallbackQuer
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
-            await bot.send_message(chat_id=callback_query.from_user.id, text='Telegram Premium',
-                                   reply_markup=kb.keyboard_tg)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Telegram Premium',
+                                        reply_markup=kb.keyboard_tg, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -170,8 +168,7 @@ async def process_buy_tg_1y_qr(callback_query: types.CallbackQuery):
                 await db.add_money(callback_query.from_user.id, -price_tg_1y_qr)
                 await db.add_purchase(callback_query.from_user.id, 'Telegram Premium 1y qr', price_tg_1y_qr, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Telegram Premium на 1 год. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -180,7 +177,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:Telegram Premium 1 год QR
 уникальный номер: {id_p}
-                        ''', reply_markup=kb.review_kb(id_p))
+                        ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Telegram Premium 1 год QR''')
             else:
@@ -209,8 +207,7 @@ async def process_buy_tg_1m_qr(callback_query: types.CallbackQuery):
                 await db.add_money(callback_query.from_user.id, -price_tg_1m_qr)
                 await db.add_purchase(callback_query.from_user.id, 'Telegram Premium 1m qr', price_tg_1m_qr, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Telegram Premium на 1 месяц. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -219,7 +216,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:Telegram Premium 1 месяц QR
 уникальный номер: {id_p}
-                        ''', reply_markup=kb.review_kb(id_p))
+                        ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Telegram Premium 1 месяц QR''')
             else:

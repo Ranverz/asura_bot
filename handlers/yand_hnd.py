@@ -21,9 +21,8 @@ async def process_callback_button_ya(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_ya = await db.show_price('ya')
-            await bot.send_message(chat_id=callback_query.from_user.id, text=f'''
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text=f'''
 🎈Яндекс Плюс 3 месяца
 📄 Описание: 
 Вам не нужно привязывать карту к аккаунту, по истечению подписки списаний не будет!
@@ -38,7 +37,7 @@ async def process_callback_button_ya(callback_query: types.CallbackQuery):
 
 
 💵 Цена: {price_ya}₽''',
-                                   reply_markup=kb.keyboard_buy_ya)
+                                        reply_markup=kb.keyboard_buy_ya, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -56,9 +55,9 @@ async def process_callback_button_ya_back(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
-            await bot.send_message(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
-                                   reply_markup=kb.keyboard_stock_inl)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
+                                        reply_markup=kb.keyboard_stock_inl,
+                                        message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -83,8 +82,7 @@ async def process_buy_ya(callback_query: types.CallbackQuery):
                 await db.add_money(callback_query.from_user.id, -price_ya)
                 await db.add_purchase(callback_query.from_user.id, 'Яндекс Плюс 3 месяца', price_ya, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Яндекс плюс на 3 месяца. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -93,7 +91,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:Яндекс плюс на 3 месяца
 уникальный номер: {id_p}
-                        ''', reply_markup=kb.review_kb(id_p))
+                        ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Яндекс плюс на 3 месяца''')
             else:

@@ -21,9 +21,8 @@ async def btg(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
-            await bot.send_message(chat_id=callback_query.from_user.id, text='Honkai: Star Rail',
-                                   reply_markup=kb.keyboard_honkai)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Honkai: Star Rail',
+                                        reply_markup=kb.keyboard_honkai, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -41,10 +40,9 @@ async def pr_hon_sp(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_sp = await db.show_price('hon_sp')
-            await bot.send_message(chat_id=callback_query.from_user.id,
-                                   text=f'''Товар: 
+            await bot.edit_message_text(chat_id=callback_query.from_user.id,
+                                        text=f'''Товар: 
 🎈Пропуск снабжения экспресса
 
 📄 Описание: 
@@ -56,7 +54,7 @@ async def pr_hon_sp(callback_query: types.CallbackQuery):
 Сообщаем Вам о готовности и после проверки ожидаем вашего отзыва.
 
 💵 Цена: {price_sp}₽''',
-                                   reply_markup=kb.keyboard_hon_sp)
+                                        reply_markup=kb.keyboard_hon_sp, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -74,10 +72,9 @@ async def pr_hon_60k(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_hon_60k = await db.show_price('hon_60k')
-            await bot.send_message(chat_id=callback_query.from_user.id,
-                                   text=f'''Товар: 
+            await bot.edit_message_text(chat_id=callback_query.from_user.id,
+                                        text=f'''Товар: 
 🎈60 Сущности древних снов
 
 📄 Описание: 
@@ -90,7 +87,7 @@ async def pr_hon_60k(callback_query: types.CallbackQuery):
 Если у вас на аккаунте доступен 2x бонус первой покупки, то он сработает и вы получите в два раза больше Сущности древних снов(120).
 
 💵 Цена: {price_hon_60k}₽''',
-                                   reply_markup=kb.keyboard_hon_60k)
+                                        reply_markup=kb.keyboard_hon_60k, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -108,10 +105,9 @@ async def pr_hon_300k(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_hon_300k = await db.show_price('hon_300k')
-            await bot.send_message(chat_id=callback_query.from_user.id,
-                                   text=f'''Товар: 
+            await bot.edit_message_text(chat_id=callback_query.from_user.id,
+                                        text=f'''Товар: 
 🎈300+30 Сущности древних снов
 
 📄 Описание: 
@@ -124,7 +120,7 @@ async def pr_hon_300k(callback_query: types.CallbackQuery):
 Если у вас на аккаунте доступен 2x бонус первой покупки, то он сработает и вы получите в два раза больше Сущности древних снов(600).
 
 💵 Цена: {price_hon_300k}₽''',
-                                   reply_markup=kb.keyboard_hon_300k)
+                                        reply_markup=kb.keyboard_hon_300k, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -142,10 +138,9 @@ async def pr_hon_980k(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_hon_980k = await db.show_price('hon_980k')
-            await bot.send_message(chat_id=callback_query.from_user.id,
-                                   text=f'''Товар: 
+            await bot.edit_message_text(chat_id=callback_query.from_user.id,
+                                        text=f'''Товар: 
 🎈980+110 Сущности древних снов
 
 📄 Описание: 
@@ -158,7 +153,7 @@ async def pr_hon_980k(callback_query: types.CallbackQuery):
 Если у вас на аккаунте доступен 2x бонус первой покупки, то он сработает и вы получите в два раза больше Сущности древних снов(1960).
 
 💵 Цена: {price_hon_980k}₽''',
-                                   reply_markup=kb.keyboard_hon_980k)
+                                        reply_markup=kb.keyboard_hon_980k, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -176,10 +171,9 @@ async def pr_hon_1980k(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_hon_1980k = await db.show_price('hon_1980k')
-            await bot.send_message(chat_id=callback_query.from_user.id,
-                                   text=f'''Товар: 
+            await bot.edit_message_text(chat_id=callback_query.from_user.id,
+                                        text=f'''Товар: 
 🎈1980+260 Сущности древних снов
 
 📄 Описание: 
@@ -192,7 +186,8 @@ async def pr_hon_1980k(callback_query: types.CallbackQuery):
 Если у вас на аккаунте доступен 2x бонус первой покупки, то он сработает и вы получите в два раза больше Сущности древних снов(3960).
 
 💵 Цена: {price_hon_1980k}₽''',
-                                   reply_markup=kb.keyboard_hon_1980k)
+                                        reply_markup=kb.keyboard_hon_1980k,
+                                        message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -210,10 +205,9 @@ async def pr_hon_3280k(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_hon_3280k = await db.show_price('hon_3280k')
-            await bot.send_message(chat_id=callback_query.from_user.id,
-                                   text=f'''Товар: 
+            await bot.edit_message_text(chat_id=callback_query.from_user.id,
+                                        text=f'''Товар: 
 🎈3280+600 Сущности древних снов
 
 📄 Описание: 
@@ -226,7 +220,8 @@ async def pr_hon_3280k(callback_query: types.CallbackQuery):
 Если у вас на аккаунте доступен 2x бонус первой покупки, то он сработает и вы получите в два раза больше Сущности древних снов(6560).
 
 💵 Цена: {price_hon_3280k}₽''',
-                                   reply_markup=kb.keyboard_hon_3280k)
+                                        reply_markup=kb.keyboard_hon_3280k,
+                                        message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -244,10 +239,9 @@ async def pr_hon_6480k(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
             price_hon_6480k = await db.show_price('hon_6480k')
-            await bot.send_message(chat_id=callback_query.from_user.id,
-                                   text=f'''Товар: 
+            await bot.edit_message_text(chat_id=callback_query.from_user.id,
+                                        text=f'''Товар: 
 🎈6480+1600 Сущности древних снов
 
 📄 Описание: 
@@ -260,7 +254,8 @@ async def pr_hon_6480k(callback_query: types.CallbackQuery):
 Если у вас на аккаунте доступен 2x бонус первой покупки, то он сработает и вы получите в два раза больше Сущности древних снов(12960).
 
 💵 Цена: {price_hon_6480k}₽''',
-                                   reply_markup=kb.keyboard_hon_6480k)
+                                        reply_markup=kb.keyboard_hon_6480k,
+                                        message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -278,9 +273,9 @@ async def pr_hon_back(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
-            await bot.send_message(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
-                                   reply_markup=kb.keyboard_stock_inl)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
+                                        reply_markup=kb.keyboard_stock_inl,
+                                        message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -298,9 +293,8 @@ async def pr_hon_buy_back(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            await callback_query.message.delete()
-            await bot.send_message(chat_id=callback_query.from_user.id, text='Honkai: Star Rail',
-                                   reply_markup=kb.keyboard_honkai)
+            await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Honkai: Star Rail',
+                                        reply_markup=kb.keyboard_honkai, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -325,8 +319,7 @@ async def pr_hon_buy_sp(callback_query: types.CallbackQuery):
                 await db.add_money(callback_query.from_user.id, -price_sp)
                 await db.add_purchase(callback_query.from_user.id, 'Пропуск снабжения экспресса', price_sp, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Пропуска снабжения экспресса. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -335,7 +328,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:Пропуск снабжения экспресса
 уникальный номер: {id_p}
-            ''', reply_markup=kb.review_kb(id_p))
+            ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Пропуск снабжения экспресса(uid)''')
             else:
@@ -364,8 +358,7 @@ async def pr_hon_buy_60k(callback_query: types.CallbackQuery):
                 await db.add_money(callback_query.from_user.id, -price_hon_60k)
                 await db.add_purchase(callback_query.from_user.id, '60 Сущности древних снов', price_hon_60k, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 60 Сущности древних снов. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -374,7 +367,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:60 Сущности древних снов
 уникальный номер: {id_p}
-            ''', reply_markup=kb.review_kb(id_p))
+            ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:60 Сущности древних снов(uid)''')
             else:
@@ -403,8 +397,7 @@ async def pr_hon_buy_300k(callback_query: types.CallbackQuery):
                 await db.add_money(callback_query.from_user.id, -price_hon_300k)
                 await db.add_purchase(callback_query.from_user.id, '300+30 Сущности древних снов', price_hon_300k, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 300+30 Сущности древних снов. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -413,7 +406,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:300+30 Сущности древних снов
 уникальный номер: {id_p}
-            ''', reply_markup=kb.review_kb(id_p))
+            ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:300+30 Сущности древних снов(uid)''')
             else:
@@ -443,8 +437,7 @@ async def pr_hon_buy_980k(callback_query: types.CallbackQuery):
                 await db.add_purchase(callback_query.from_user.id, '980+110 Сущности древних снов', price_hon_980k,
                                       time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 980+110 Сущности древних снов. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -453,7 +446,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:980+110 Сущности древних снов
 уникальный номер: {id_p}
-            ''', reply_markup=kb.review_kb(id_p))
+            ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:980+110 Сущности древних снов(uid)''')
             else:
@@ -483,8 +477,7 @@ async def pr_hon_buy_1980k(callback_query: types.CallbackQuery):
                 await db.add_purchase(callback_query.from_user.id, '1980+260 Сущности древних снов', price_hon_1980k,
                                       time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 1980+260 Сущности древних снов. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -493,7 +486,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:1980+260 Сущности древних снов
 уникальный номер: {id_p}
-            ''', reply_markup=kb.review_kb(id_p))
+            ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:1980+260 Сущности древних снов(uid)''')
             else:
@@ -523,8 +517,7 @@ async def pr_hon_buy_3280k(callback_query: types.CallbackQuery):
                 await db.add_purchase(callback_query.from_user.id, '3280+600 Сущности древних снов', price_hon_3280k,
                                       time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 3280+600 Сущности древних снов. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -533,7 +526,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:3280+600 Сущности древних снов
 уникальный номер: {id_p}
-            ''', reply_markup=kb.review_kb(id_p))
+            ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:3280+600 Сущности древних снов(uid)''')
             else:
@@ -563,8 +557,7 @@ async def pr_hon_buy_6480k(callback_query: types.CallbackQuery):
                 await db.add_purchase(callback_query.from_user.id, '6480+1600 Сущности древних снов', price_hon_6480k,
                                       time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
-                await callback_query.message.delete()
-                await callback_query.message.answer(
+                await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 6480+1600 Сущности древних снов. 
 Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
@@ -573,7 +566,8 @@ Cвяжитесь с администратором для получения т
 
 тип товара:6480+1600 Сущности древних снов
 уникальный номер: {id_p}
-            ''', reply_markup=kb.review_kb(id_p))
+            ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
+                    message_id=callback_query.message.message_id)
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:6480+1600 Сущности древних снов(uid)''')
             else:

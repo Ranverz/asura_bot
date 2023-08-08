@@ -81,7 +81,7 @@ async def show_purchased_history(call: types.CallbackQuery):
                     async with aiofiles.open(f'purchase_list_for_{call.from_user.id}.txt', 'w',
                                              encoding='utf-8') as file:
                         await file.write(formatted_ans)
-                    document = types.input_file.InputFile(f'purchase_list_for_{call.from_user.id}.txt')
+                    document = types.InputFile(f'purchase_list_for_{call.from_user.id}.txt')
                     await bot.send_document(chat_id=call.message.chat.id, document=document)
                     os.remove(f'purchase_list_for_{call.from_user.id}.txt')
             else:
@@ -103,7 +103,6 @@ async def top_up(callback: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback.from_user.id)):
             await db.set_active(callback.from_user.id, 1)
-            # await bot.delete_message(callback.from_user.id, callback.message.message_id)
             await NewOrder.amount.set()
             await bot.send_message(callback.from_user.id,
                                    f'''
@@ -133,8 +132,8 @@ async def cancel_choosing_payment(callback: types.CallbackQuery, state: FSMConte
             if curr_state is None:
                 return
             await state.finish()
-            await callback.message.delete()
-            await callback.message.answer("Пополнение отменено")
+            await bot.edit_message_text(text="Пополнение отменено", chat_id=callback.message.chat.id,
+                                        message_id=callback.message.message_id)
         else:
             await callback.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -156,8 +155,8 @@ async def cancel_p(callback: types.CallbackQuery, state: FSMContext):
             if curr_state is None:
                 return
             await state.finish()
-            await callback.message.delete()
-            await callback.message.answer('Оплата отменена')
+            await bot.edit_message_text(text='Оплата отменена', chat_id=callback.message.chat.id,
+                                        message_id=callback.message.message_id)
         else:
             await callback.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -228,10 +227,10 @@ async def check_pa(callback: types.CallbackQuery, state: FSMContext):
                     async with state.proxy() as data:
                         amm = data['amount']
                     await state.finish()
-                    await callback.message.delete()
                     await db.add_money(callback.from_user.id, amm)
-                    await callback.message.answer(f'Ваш баланс успешно пополнен на <code>{amm}</code>₽',
-                                                  parse_mode=types.ParseMode.HTML)
+                    await bot.edit_message_text(text=f'Ваш баланс успешно пополнен на <code>{amm}</code>₽',
+                                                parse_mode=types.ParseMode.HTML, message_id=callback.message.message_id,
+                                                chat_id=callback.message.chat.id)
 
                 else:
                     await callback.answer(text='Оплата не найдена', show_alert=True)
