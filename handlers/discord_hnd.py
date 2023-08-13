@@ -233,7 +233,7 @@ async def process_buy_nitro_1y_qr(callback_query: types.CallbackQuery):
             price_nitro_1y_qr = await db.show_price('dsntr_1y_qr')
             if money >= price_nitro_1y_qr:
                 await db.add_money(callback_query.from_user.id, -price_nitro_1y_qr)
-                await db.add_purchase(callback_query.from_user.id, 'nitro 1y qr', price_nitro_1y_qr, time)
+                await db.add_purchase(callback_query.from_user.id, 'Discord Nitro 1y QR', price_nitro_1y_qr, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
                 await bot.edit_message_text(
                     text=f'''
@@ -249,7 +249,8 @@ Cвяжитесь с администратором для получения т
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 год QR''')
             else:
-                await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
+                await callback_query.message.answer(
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1y_qr - money}₽')
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -272,7 +273,7 @@ async def process_buy_nitro_1m_qr(callback_query: types.CallbackQuery):
             price_nitro_1m_qr = await db.show_price('dsntr_1m_qr')
             if money >= price_nitro_1m_qr:
                 await db.add_money(callback_query.from_user.id, -price_nitro_1m_qr)
-                await db.add_purchase(callback_query.from_user.id, 'nitro 1m qr', price_nitro_1m_qr, time)
+                await db.add_purchase(callback_query.from_user.id, 'Discord Nitro 1m QR', price_nitro_1m_qr, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
                 await bot.edit_message_text(
                     text=f'''
@@ -288,7 +289,8 @@ Cвяжитесь с администратором для получения т
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 месяц QR''')
             else:
-                await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
+                await callback_query.message.answer(
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1m_qr - money}₽')
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -311,7 +313,7 @@ async def process_buy_nitro_1m_noreg(callback_query: types.CallbackQuery):
             price_nitro_1m_noreg = await db.show_price('dsntr_1m_noreg')
             if money >= price_nitro_1m_noreg:
                 await db.add_money(callback_query.from_user.id, -price_nitro_1m_noreg)
-                await db.add_purchase(callback_query.from_user.id, 'nitro 1m noreg', price_nitro_1m_noreg, time)
+                await db.add_purchase(callback_query.from_user.id, 'Discord Nitro 1m noreg', price_nitro_1m_noreg, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
                 await bot.edit_message_text(
                     text=f'''
@@ -327,7 +329,8 @@ Cвяжитесь с администратором для получения т
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 месяц без входа''')
             else:
-                await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
+                await callback_query.message.answer(
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1m_noreg - money}₽')
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -350,7 +353,7 @@ async def process_buy_nitro_1y_noreg(callback_query: types.CallbackQuery):
             price_nitro_1y_noreg = await db.show_price('dsntr_1y_noreg')
             if money >= price_nitro_1y_noreg:
                 await db.add_money(callback_query.from_user.id, -price_nitro_1y_noreg)
-                await db.add_purchase(callback_query.from_user.id, 'nitro 1y noreg', price_nitro_1y_noreg, time)
+                await db.add_purchase(callback_query.from_user.id, 'Discord Nitro 1y noreg', price_nitro_1y_noreg, time)
                 id_p = await db.show_purchase_id(callback_query.from_user.id, time)
                 await bot.edit_message_text(
                     text=f'''
@@ -366,7 +369,8 @@ Cвяжитесь с администратором для получения т
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 год без входа''')
             else:
-                await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
+                await callback_query.message.answer(
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1y_noreg - money}₽')
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',

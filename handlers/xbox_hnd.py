@@ -97,7 +97,8 @@ Cвяжитесь с администратором для получения т
                 await bot.send_message(op_id,
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Xbox Game Pass на 1 месяц''')
             else:
-                await callback_query.message.answer(text='Недостаточно средств, сначала пополните счет')
+                await callback_query.message.answer(
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_xbox - money}₽')
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
