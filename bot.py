@@ -55,7 +55,8 @@ async def process_start_command(message: types.Message):
                     reply_markup=kb.keyboard_main, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
                 if z:
                     await bot.send_message(adm_id,
-                                           f'Новый пользователь: {message.from_user.full_name}\n@{message.from_user.username}\n\nВсего пользователей:{z}')
+                                           f'Новый пользователь: {message.from_user.full_name}\n@{message.from_user.username}\nid: <code>{message.from_user.id}</code>\n\nВсего пользователей:{z}',
+                                           parse_mode=ParseMode.HTML)
                 if message.from_user.id == adm_id:
                     await message.answer(f"Вы авторизовались как администратор, {message.from_user.full_name}",
                                          reply_markup=kb.keyboard_main_admin)
@@ -209,7 +210,7 @@ async def addreview_notext(callback: types.CallbackQuery, state: FSMContext):
             pr = await db.show_purchase_info(callback.from_user.id, id_pr)
             await bot.send_message(chat_id=f'@{REVIEWS_ID}', text=f'''
 Номер заказа: {id_pr}
-Время заказа: {pr[0]}
+Время заказа: {pr[0].split('.')[0]}
 Тип товара: {pr[1]}
 
 Пользователь: @{callback.from_user.username}
@@ -243,7 +244,7 @@ async def addreview_text(message: types.Message, state: FSMContext):
                     await bot.send_message(chat_id=f'@{REVIEWS_ID}',
                                            text=f'''
 Номер заказа: {id_pr}
-Время заказа: {pr[0]}
+Время заказа: {pr[0].split('.')[0]}
 Тип товара: {pr[1]}
 
 Пользователь: @{message.from_user.username}

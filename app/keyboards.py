@@ -148,16 +148,28 @@ keyboard_tg.add(InlineKeyboardButton(text=f'Telegram Premium QR(1 месяц)',
                                      callback_data='tg_1m_qr'),
                 InlineKeyboardButton(text=f'Telegram Premium QR(1 год)',
                                      callback_data='tg_1y_qr'),
+                InlineKeyboardButton(text=f'Telegram Premium без входа(1 месяц)',
+                                     callback_data='tg_1m_noreg'),
+                InlineKeyboardButton(text=f'Telegram Premium без входа(1 год)',
+                                     callback_data='tg_1y_noreg'),
 
                 InlineKeyboardButton(text=f'Назад ко всем категориям', callback_data='tg_back'), )
 
-keyboard_buy_tg_1m = InlineKeyboardMarkup(row_width=1)
-keyboard_buy_tg_1m.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_tg_1m'),
-                       InlineKeyboardButton(text='Назад', callback_data='buy_tg_back'))
+keyboard_buy_tg_1m_qr = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_tg_1m_qr.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_tg_1m_qr'),
+                          InlineKeyboardButton(text='Назад', callback_data='buy_tg_back'))
 
-keyboard_buy_tg_1y = InlineKeyboardMarkup(row_width=1)
-keyboard_buy_tg_1y.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_tg_1y'),
-                       InlineKeyboardButton(text='Назад', callback_data='buy_tg_back'))
+keyboard_buy_tg_1y_qr = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_tg_1y_qr.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_tg_1y_qr'),
+                          InlineKeyboardButton(text='Назад', callback_data='buy_tg_back'))
+
+keyboard_buy_tg_1m_noreg = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_tg_1m_noreg.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_tg_1m_noreg'),
+                             InlineKeyboardButton(text='Назад', callback_data='buy_tg_back'))
+
+keyboard_buy_tg_1y_noreg = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_tg_1y_noreg.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_tg_1y_noreg'),
+                             InlineKeyboardButton(text='Назад', callback_data='buy_tg_back'))
 
 keyboard_buy_xbox = InlineKeyboardMarkup(row_width=1)
 keyboard_buy_xbox.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_xbox'),
