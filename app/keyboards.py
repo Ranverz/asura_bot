@@ -171,6 +171,29 @@ keyboard_buy_tg_1y_noreg = InlineKeyboardMarkup(row_width=1)
 keyboard_buy_tg_1y_noreg.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_tg_1y_noreg'),
                              InlineKeyboardButton(text='Назад', callback_data='buy_tg_back'))
 
+keyboard_spotify = InlineKeyboardMarkup(row_width=1)
+keyboard_spotify.add(InlineKeyboardButton(text='Spotify Premium(1 месяц)', callback_data='spotify_1m'),
+                     InlineKeyboardButton(text='Spotify Premium(3 месяца)', callback_data='spotify_3m'),
+                     InlineKeyboardButton(text='Spotify Premium(6 месяцев)', callback_data='spotify_6m'),
+                     InlineKeyboardButton(text='Spotify Premium(12 месяцев)', callback_data='spotify_12m'),
+                     InlineKeyboardButton(text='Назад ко всем категориям', callback_data='spotify_back'), )
+
+keyboard_buy_spotify_1m = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_spotify_1m.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_spotify_1m'),
+                            InlineKeyboardButton(text='Назад', callback_data='buy_spotify_back'))
+
+keyboard_buy_spotify_3m = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_spotify_3m.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_spotify_3m'),
+                            InlineKeyboardButton(text='Назад', callback_data='buy_spotify_back'))
+
+keyboard_buy_spotify_6m = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_spotify_6m.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_spotify_6m'),
+                            InlineKeyboardButton(text='Назад', callback_data='buy_spotify_back'))
+
+keyboard_buy_spotify_12m = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_spotify_12m.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_spotify_12m'),
+                             InlineKeyboardButton(text='Назад', callback_data='buy_spotify_back'))
+
 keyboard_buy_xbox = InlineKeyboardMarkup(row_width=1)
 keyboard_buy_xbox.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_xbox'),
                       InlineKeyboardButton(text='Назад', callback_data='buy_xbox_back'))
@@ -193,14 +216,15 @@ keyboard_profile = InlineKeyboardMarkup(row_width=2)
 keyboard_profile.add(InlineKeyboardButton(text='Пополнить', callback_data='profile_insert'),
                      InlineKeyboardButton(text='Покупки', callback_data='profile_history'), )
 
-keyboard_stock_inl = InlineKeyboardMarkup(row_width=1)
-keyboard_stock_inl.add(InlineKeyboardButton(text='Discord Nitro', callback_data='btndiscord'),
-                       InlineKeyboardButton(text='Xbox Game Pass', callback_data='btnxbox'),
-                       InlineKeyboardButton(text='Telegram Premium', callback_data='btntg'),
-                       InlineKeyboardButton(text='Яндекс Плюс', callback_data='btnyandex'),
-                       InlineKeyboardButton(text='Genshin Impact', callback_data='btngenshin'),
-                       InlineKeyboardButton(text='Honkai: Star Rail', callback_data='btnhonkai'),
-                       InlineKeyboardButton(text='Другие сервисы', callback_data='btnotherserv'),
+keyboard_stock_inl = InlineKeyboardMarkup(row_width=2)
+keyboard_stock_inl.add(InlineKeyboardButton(text='💜Discord Nitro', callback_data='btndiscord'),
+                       InlineKeyboardButton(text='🎮Xbox Game Pass', callback_data='btnxbox'),
+                       InlineKeyboardButton(text='🔷Telegram Premium', callback_data='btntg'),
+                       InlineKeyboardButton(text='🟣Яндекс Плюс', callback_data='btnyandex'),
+                       InlineKeyboardButton(text='🟢Spotify Premium', callback_data='btnspotify'),
+                       InlineKeyboardButton(text='💎Genshin Impact', callback_data='btngenshin'),
+                       InlineKeyboardButton(text='💎Honkai: Star Rail', callback_data='btnhonkai'),
+                       InlineKeyboardButton(text='🌐Другие сервисы', callback_data='btnotherserv'),
                        ),
 keyboard_other_back = InlineKeyboardMarkup(row_width=1)
 keyboard_other_back.add(InlineKeyboardButton(text='Назад ко всем категориям', callback_data='buy_other_back'))

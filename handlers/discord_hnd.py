@@ -200,26 +200,6 @@ async def process_callback_button_ds_back(callback_query: types.CallbackQuery):
         await db.set_active(callback_query.from_user.id, 0)
 
 
-# @dp.callback_query_handler(text='buy_back')
-async def process_callback_button_ds_buy_back(callback_query: types.CallbackQuery):
-    blocked_raw = (await db.show_blocked_users())
-    blocked = list(map(lambda user: user[0], blocked_raw))
-    if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(
-                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
-            await db.set_active(callback_query.from_user.id, 1)
-            await bot.edit_message_text(chat_id=callback_query.from_user.id,
-                                        message_id=callback_query.message.message_id, text='Discord nitro',
-                                        reply_markup=kb.keyboard_nitro)
-        else:
-            await callback_query.message.answer(
-                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
-                parse_mode=types.ParseMode.HTML)
-            await db.set_active(callback_query.from_user.id, 0)
-    else:
-        await db.set_active(callback_query.from_user.id, 0)
-
-
 # @dp.callback_query_handler(text='buy_buy_nitro_1y_qr')
 async def process_buy_nitro_1y_qr(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
@@ -386,9 +366,9 @@ def reg_hand_discord():
     dp.register_callback_query_handler(process_buy_nitro_1m_noreg, text='buy_buy_nitro_1m_noreg')
     dp.register_callback_query_handler(process_buy_nitro_1y_noreg, text='buy_buy_nitro_1y_noreg')
     dp.register_callback_query_handler(process_callback_button_ds, text='btndiscord')
+    dp.register_callback_query_handler(process_callback_button_ds, text='buy_back')
     dp.register_callback_query_handler(process_callback_button_ds_1y_qr, text='ntr_1y_qr')
     dp.register_callback_query_handler(process_callback_button_ds_1m_qr, text='ntr_1m_qr')
     dp.register_callback_query_handler(process_callback_button_ds_1m_noreg, text='ntr_1m_no_log')
     dp.register_callback_query_handler(process_callback_button_ds_1y_noreg, text='ntr_1y_no_log')
     dp.register_callback_query_handler(process_callback_button_ds_back, text='ntr_back')
-    dp.register_callback_query_handler(process_callback_button_ds_buy_back, text='buy_back')

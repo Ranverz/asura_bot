@@ -19,6 +19,7 @@ from handlers.tg_hnd import reg_hand_tg
 from handlers.yand_hnd import reg_hand_ya
 from handlers.xbox_hnd import reg_hand_xbox
 from handlers.other_hnd import reg_hand_other
+from handlers.spotify_hnd import reg_hand_spotify
 
 from dotenv import load_dotenv
 
@@ -270,6 +271,7 @@ async def addreview_text(message: types.Message, state: FSMContext):
 reg_hand_profile()
 reg_hand_admin()
 reg_hand_discord()
+reg_hand_spotify()
 reg_hand_genshin()
 reg_hand_honkai()
 reg_hand_tg()

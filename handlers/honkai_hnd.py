@@ -14,7 +14,7 @@ op_id = os.getenv('OPERATOR_ID')
 
 
 # @dp.callback_query_handler(text='btnhonkai')
-async def btg(callback_query: types.CallbackQuery):
+async def pr_btn_hon(callback_query: types.CallbackQuery):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
@@ -276,25 +276,6 @@ async def pr_hon_back(callback_query: types.CallbackQuery):
             await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Доступные категории в магазине:',
                                         reply_markup=kb.keyboard_stock_inl,
                                         message_id=callback_query.message.message_id)
-        else:
-            await callback_query.message.answer(
-                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
-                parse_mode=types.ParseMode.HTML)
-            await db.set_active(callback_query.from_user.id, 0)
-    else:
-        await db.set_active(callback_query.from_user.id, 0)
-
-
-# @dp.callback_query_handler(text='buy_hon_back')
-async def pr_hon_buy_back(callback_query: types.CallbackQuery):
-    blocked_raw = (await db.show_blocked_users())
-    blocked = list(map(lambda user: user[0], blocked_raw))
-    if callback_query.from_user.id not in blocked:
-        if await check_sub_channel(
-                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
-            await db.set_active(callback_query.from_user.id, 1)
-            await bot.edit_message_text(chat_id=callback_query.from_user.id, text='Honkai: Star Rail',
-                                        reply_markup=kb.keyboard_honkai, message_id=callback_query.message.message_id)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -589,9 +570,9 @@ Cвяжитесь с администратором для получения т
 
 
 def reg_hand_honkai():
-    dp.register_callback_query_handler(btg, text='btnhonkai')
+    dp.register_callback_query_handler(pr_btn_hon, text='btnhonkai')
+    dp.register_callback_query_handler(pr_btn_hon, text='buy_hon_back')
     dp.register_callback_query_handler(pr_hon_back, text='hon_back')
-    dp.register_callback_query_handler(pr_hon_buy_back, text='buy_hon_back')
     dp.register_callback_query_handler(pr_hon_sp, text='hon_sp')
     dp.register_callback_query_handler(pr_hon_60k, text='hon_60k')
     dp.register_callback_query_handler(pr_hon_300k, text='hon_300k')
