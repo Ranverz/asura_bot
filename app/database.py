@@ -76,6 +76,12 @@ async def db_start():
         ('spotify_3m', 499),
         ('spotify_6m', 990),
         ('spotify_12m', 1699),
+
+        ('fortnite_1000', 249),
+        ('fortnite_2800', 699),
+        ('fortnite_5000', 949),
+        ('fortnite_13500', 2299),
+
     ]
 
     cursor.executemany('''INSERT OR IGNORE INTO `items` (name, price) VALUES (?, ?)''', items_data)

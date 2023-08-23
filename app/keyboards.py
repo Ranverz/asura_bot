@@ -194,6 +194,30 @@ keyboard_buy_spotify_12m = InlineKeyboardMarkup(row_width=1)
 keyboard_buy_spotify_12m.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_spotify_12m'),
                              InlineKeyboardButton(text='Назад', callback_data='buy_spotify_back'))
 
+keyboard_fortnite = InlineKeyboardMarkup(row_width=1)
+keyboard_fortnite.add(InlineKeyboardButton(text='1000 В-баксов', callback_data='fortnite_1000'),
+                      InlineKeyboardButton(text='2800 В-баксов', callback_data='fortnite_2800'),
+                      InlineKeyboardButton(text='5000 В-баксов', callback_data='fortnite_5000'),
+                      InlineKeyboardButton(text='13500 В-баксов', callback_data='fortnite_13500'),
+                      InlineKeyboardButton(text='Назад ко всем категориям', callback_data='fortnite_back'),
+                      )
+
+keyboard_buy_fortnite_1000 = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_fortnite_1000.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_fortnite_1000'),
+                               InlineKeyboardButton(text='Назад', callback_data='buy_fortnite_back'))
+
+keyboard_buy_fortnite_2800 = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_fortnite_2800.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_fortnite_2800'),
+                               InlineKeyboardButton(text='Назад', callback_data='buy_fortnite_back'))
+
+keyboard_buy_fortnite_5000 = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_fortnite_5000.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_fortnite_5000'),
+                               InlineKeyboardButton(text='Назад', callback_data='buy_fortnite_back'))
+
+keyboard_buy_fortnite_13500 = InlineKeyboardMarkup(row_width=1)
+keyboard_buy_fortnite_13500.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_fortnite_13500'),
+                                InlineKeyboardButton(text='Назад', callback_data='buy_fortnite_back'))
+
 keyboard_buy_xbox = InlineKeyboardMarkup(row_width=1)
 keyboard_buy_xbox.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_xbox'),
                       InlineKeyboardButton(text='Назад', callback_data='buy_xbox_back'))
@@ -218,10 +242,11 @@ keyboard_profile.add(InlineKeyboardButton(text='Пополнить', callback_da
 
 keyboard_stock_inl = InlineKeyboardMarkup(row_width=2)
 keyboard_stock_inl.add(InlineKeyboardButton(text='💜Discord Nitro', callback_data='btndiscord'),
-                       InlineKeyboardButton(text='🎮Xbox Game Pass', callback_data='btnxbox'),
-                       InlineKeyboardButton(text='🔷Telegram Premium', callback_data='btntg'),
                        InlineKeyboardButton(text='🟣Яндекс Плюс', callback_data='btnyandex'),
+                       InlineKeyboardButton(text='🔷Telegram Premium', callback_data='btntg'),
                        InlineKeyboardButton(text='🟢Spotify Premium', callback_data='btnspotify'),
+                       InlineKeyboardButton(text='🎮Xbox Game Pass', callback_data='btnxbox'),
+                       InlineKeyboardButton(text='✨Fortnite', callback_data='btnfortnite'),
                        InlineKeyboardButton(text='💎Genshin Impact', callback_data='btngenshin'),
                        InlineKeyboardButton(text='💎Honkai: Star Rail', callback_data='btnhonkai'),
                        InlineKeyboardButton(text='🌐Другие сервисы', callback_data='btnotherserv'),

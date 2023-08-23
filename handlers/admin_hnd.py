@@ -160,11 +160,15 @@ async def priceadmn(message: types.Message):
 async def pr_block_list_comm(message: types.Message):
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
+    txt = ''
     if message.from_user.id not in blocked:
         if await check_sub_channel(await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=message.from_user.id)):
             await db.set_active(message.from_user.id, 1)
             if message.from_user.id == adm_id:
-                await message.answer(f'Заблокированные пользователи: {blocked}')
+                for i in blocked:
+                    txt += f'<code>{i}</code>, '
+                await message.answer(f'Заблокированные пользователи: {txt}\n\nВсего заблокировано: {len(blocked)}',
+                                     parse_mode=types.ParseMode.HTML)
             else:
                 await message.reply(
                     'К сожалению, я не могу распознать эту команду.\nВоспользуйтесь навигацией или командой /start')
