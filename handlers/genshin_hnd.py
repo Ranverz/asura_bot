@@ -15,6 +15,7 @@ op_id = os.getenv('OPERATOR_ID')
 
 # @dp.callback_query_handler(text='btngenshin')
 async def pr_gnsh_button(callback_query: types.CallbackQuery):
+    print(1)
     blocked_raw = (await db.show_blocked_users())
     blocked = list(map(lambda user: user[0], blocked_raw))
     if callback_query.from_user.id not in blocked:
@@ -571,6 +572,8 @@ Cвяжитесь с администратором для получения т
 
 def reg_hand_genshin():
     dp.register_callback_query_handler(pr_gnsh_button, text='btngenshin')
+    dp.register_callback_query_handler(pr_gnsh_button, text='buy_gnsh_back')
+
     dp.register_callback_query_handler(pr_gnsh_back, text='gnsh_back')
     dp.register_callback_query_handler(pr_gnsh_moon, text='gnsh_moon')
     dp.register_callback_query_handler(pr_gnsh_60k, text='gnsh_60k')
