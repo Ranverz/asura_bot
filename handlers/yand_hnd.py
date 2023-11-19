@@ -97,7 +97,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Яндекс плюс на 3 месяца''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_ya - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_ya - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',

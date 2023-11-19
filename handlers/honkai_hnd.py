@@ -315,7 +315,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Пропуск снабжения экспресса(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_sp - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_sp - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -355,7 +356,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:60 Сущности древних снов(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_60k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_60k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -395,7 +397,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:300+30 Сущности древних снов(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_300k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_300k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -436,7 +439,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:980+110 Сущности древних снов(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_980k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_980k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -477,7 +481,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:1980+260 Сущности древних снов(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_1980k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_1980k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -518,7 +523,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:3280+600 Сущности древних снов(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_3280k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_3280k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -559,7 +565,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:6480+1600 Сущности древних снов(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_6480k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_hon_6480k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',

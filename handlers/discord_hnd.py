@@ -230,7 +230,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 год QR''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1y_qr - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1y_qr - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -270,7 +271,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 месяц QR''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1m_qr - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1m_qr - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -310,7 +312,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 месяц без входа''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1m_noreg - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1m_noreg - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -350,7 +353,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Discord Nitro 1 год без входа''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1y_noreg - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_nitro_1y_noreg - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',

@@ -320,7 +320,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:Благословение полой луны(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_moon - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_moon - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -360,7 +361,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:60 Кристаллов Сотворения(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_60k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_60k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -400,7 +402,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:300+30 Кристаллов Сотворения(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_300k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_300k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -440,7 +443,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:980+110 Кристаллов Сотворения(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_980k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_980k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -480,7 +484,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:1980+260 Кристаллов Сотворения(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_1980k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_1980k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -520,7 +525,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:3280+600 Кристаллов Сотворения(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_3280k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_3280k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
@@ -560,7 +566,8 @@ Cвяжитесь с администратором для получения т
                                        f'''Новый заказ от {callback_query.from_user.full_name}\n@{callback_query.from_user.username}\nid_user: {callback_query.from_user.id}\n\nid_purc: {id_p}\nтип товара:6480+1600 Кристаллов Сотворения(uid)''')
             else:
                 await callback_query.message.answer(
-                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_6480k - money}₽')
+                    text=f'Недостаточно средств, сначала пополните баланс\nНе хватает {price_6480k - money}₽',
+                    reply_markup=kb.keyboard_top_up)
         else:
             await callback_query.message.answer(
                 f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',

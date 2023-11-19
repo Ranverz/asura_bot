@@ -240,6 +240,9 @@ keyboard_profile = InlineKeyboardMarkup(row_width=2)
 keyboard_profile.add(InlineKeyboardButton(text='Пополнить', callback_data='profile_insert'),
                      InlineKeyboardButton(text='Покупки', callback_data='profile_history'), )
 
+keyboard_top_up = InlineKeyboardMarkup(row_width=1)
+keyboard_top_up.add(InlineKeyboardButton(text='Пополнить', callback_data='profile_insert'))
+
 keyboard_stock_inl = InlineKeyboardMarkup(row_width=2)
 keyboard_stock_inl.add(InlineKeyboardButton(text='💜Discord Nitro', callback_data='btndiscord'),
                        InlineKeyboardButton(text='🟣Яндекс Плюс', callback_data='btnyandex'),
