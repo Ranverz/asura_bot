@@ -1,5 +1,294 @@
 from aiogram.types import InlineKeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup, WebAppInfo
 
+keyboard_discord_decorations = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations.add(InlineKeyboardButton(text='🍂Fall', callback_data='discord_limited'),
+                                 InlineKeyboardButton(text='🔮Fantasy', callback_data='discord_fantasy'),
+                                 InlineKeyboardButton(text='✨Anime', callback_data='discord_anime'),
+                                 InlineKeyboardButton(text='🥐Breakfast', callback_data='discord_breakfast'),
+                                 InlineKeyboardButton(text='Назад', callback_data='discord_decorations_back'), )
+
+keyboard_discord_decorations_limited = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited.add(
+    InlineKeyboardButton(text='🍂Украшения аватара', callback_data='discord_decorations_limited_avatar'),
+    InlineKeyboardButton(text='🍂Эффекты профиля', callback_data='discord_decorations_limited_profile'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anytheme_back'),
+)
+
+keyboard_discord_decorations_limited_avatar = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited_avatar.add(
+    InlineKeyboardButton(text='🍂Спелые тыквы', callback_data='discord_decorations_limited_avatar_1'),
+    InlineKeyboardButton(text='🍂Шапка-лягушка', callback_data='discord_decorations_limited_avatar_2'),
+    InlineKeyboardButton(text='🍂Шапка-лиса', callback_data='discord_decorations_limited_avatar_3'),
+    InlineKeyboardButton(text='🍂Осенние листья', callback_data='discord_decorations_limited_avatar_4'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_limited_anypiece_back'), )
+
+keyboard_discord_decorations_limited_profile = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited_profile.add(
+    InlineKeyboardButton(text='🍂Обитатели пруда', callback_data='discord_decorations_limited_profile_1'),
+    InlineKeyboardButton(text='🍂Золотая осень', callback_data='discord_decorations_limited_profile_2'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_limited_anypiece_back'), )
+
+keyboard_discord_decorations_limited_profile_1_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited_profile_1_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_limited_profile_1_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_limited_profile_any_back'), )
+
+keyboard_discord_decorations_limited_profile_2_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited_profile_2_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_limited_profile_2_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_limited_profile_any_back'), )
+
+keyboard_discord_decorations_limited_avatar_1_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited_avatar_1_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_limited_avatar_1_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_limited_avatar_any_back'), )
+
+keyboard_discord_decorations_limited_avatar_2_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited_avatar_2_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_limited_avatar_2_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_limited_avatar_any_back'), )
+
+keyboard_discord_decorations_limited_avatar_3_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited_avatar_3_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_limited_avatar_3_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_limited_avatar_any_back'), )
+
+keyboard_discord_decorations_limited_avatar_4_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_limited_avatar_4_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_limited_avatar_4_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_limited_avatar_any_back'), )
+
+keyboard_discord_decorations_fantasy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy.add(
+    InlineKeyboardButton(text='🔮Украшения аватара', callback_data='discord_decorations_fantasy_avatar'),
+    InlineKeyboardButton(text='🔮Эффекты профиля', callback_data='discord_decorations_fantasy_profile'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anytheme_back'),
+)
+
+keyboard_discord_decorations_fantasy_avatar = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar.add(
+    InlineKeyboardButton(text='🔮Пылающий меч', callback_data='discord_decorations_fantasy_avatar_1'),
+    InlineKeyboardButton(text='🔮Волшебное зелье', callback_data='discord_decorations_fantasy_avatar_2'),
+    InlineKeyboardButton(text='🔮Феи', callback_data='discord_decorations_fantasy_avatar_3'),
+    InlineKeyboardButton(text='🔮Посох волшебника', callback_data='discord_decorations_fantasy_avatar_4'),
+    InlineKeyboardButton(text='🔮Светящиеся руны', callback_data='discord_decorations_fantasy_avatar_5'),
+    InlineKeyboardButton(text='🔮Оборонительный щит', callback_data='discord_decorations_fantasy_avatar_6'),
+    InlineKeyboardButton(text='🔮Медальон-череп', callback_data='discord_decorations_fantasy_avatar_7'),
+    InlineKeyboardButton(text='🔮Сокровище и ключ', callback_data='discord_decorations_fantasy_avatar_8'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_anypiece_back'), )
+
+keyboard_discord_decorations_fantasy_profile = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_profile.add(
+    InlineKeyboardButton(text='🔮Водяной заряд', callback_data='discord_decorations_fantasy_profile_1'),
+    InlineKeyboardButton(text='🔮Безмятежная сакура', callback_data='discord_decorations_fantasy_profile_2'),
+    InlineKeyboardButton(text='🔮Таинственные лозы', callback_data='discord_decorations_fantasy_profile_3'),
+    InlineKeyboardButton(text='🔮Пыльца пикси', callback_data='discord_decorations_fantasy_profile_4'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_anypiece_back'), )
+
+keyboard_discord_decorations_fantasy_profile_1_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_profile_1_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_profile_1_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_profile_any_back'), )
+
+keyboard_discord_decorations_fantasy_profile_2_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_profile_2_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_profile_2_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_profile_any_back'), )
+
+keyboard_discord_decorations_fantasy_profile_3_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_profile_3_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_profile_3_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_profile_any_back'), )
+
+keyboard_discord_decorations_fantasy_profile_4_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_profile_4_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_profile_4_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_profile_any_back'), )
+
+keyboard_discord_decorations_fantasy_avatar_1_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar_1_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_avatar_1_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_avatar_any_back'), )
+
+keyboard_discord_decorations_fantasy_avatar_2_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar_2_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_avatar_2_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_avatar_any_back'), )
+
+keyboard_discord_decorations_fantasy_avatar_3_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar_3_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_avatar_3_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_avatar_any_back'), )
+
+keyboard_discord_decorations_fantasy_avatar_4_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar_4_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_avatar_4_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_avatar_any_back'), )
+
+keyboard_discord_decorations_fantasy_avatar_5_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar_5_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_avatar_5_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_avatar_any_back'), )
+
+keyboard_discord_decorations_fantasy_avatar_6_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar_6_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_avatar_6_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_avatar_any_back'), )
+
+keyboard_discord_decorations_fantasy_avatar_7_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar_7_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_avatar_7_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_avatar_any_back'), )
+
+keyboard_discord_decorations_fantasy_avatar_8_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_fantasy_avatar_8_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_fantasy_avatar_8_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_fantasy_avatar_any_back'), )
+
+keyboard_discord_decorations_anime = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime.add(
+    InlineKeyboardButton(text='✨Украшения аватара', callback_data='discord_decorations_anime_avatar'),
+    InlineKeyboardButton(text='✨Эффекты профиля', callback_data='discord_decorations_anime_profile'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anytheme_back'),
+)
+
+keyboard_discord_decorations_anime_avatar = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_avatar.add(
+    InlineKeyboardButton(text='✨Излучая энергию', callback_data='discord_decorations_anime_avatar_1'),
+    InlineKeyboardButton(text='✨Душа покидает тело', callback_data='discord_decorations_anime_avatar_2'),
+    InlineKeyboardButton(text='✨Пот градом', callback_data='discord_decorations_anime_avatar_3'),
+    InlineKeyboardButton(text='✨В мечтах', callback_data='discord_decorations_anime_avatar_4'),
+    InlineKeyboardButton(text='✨Пришла любовь', callback_data='discord_decorations_anime_avatar_5'),
+    InlineKeyboardButton(text='✨В шоке', callback_data='discord_decorations_anime_avatar_6'),
+    InlineKeyboardButton(text='✨Гнев', callback_data='discord_decorations_anime_avatar_7'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_anypiece_back'), )
+
+keyboard_discord_decorations_anime_profile = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_profile.add(
+    InlineKeyboardButton(text='✨Волшебные сердца', callback_data='discord_decorations_anime_profile_1'),
+    InlineKeyboardButton(text='✨Осколок', callback_data='discord_decorations_anime_profile_2'),
+    InlineKeyboardButton(text='✨Бросок сюрикена', callback_data='discord_decorations_anime_profile_3'),
+    InlineKeyboardButton(text='✨Пиковая мощность', callback_data='discord_decorations_anime_profile_4'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_anypiece_back'), )
+
+keyboard_discord_decorations_anime_profile_1_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_profile_1_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_profile_1_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_profile_any_back'), )
+
+keyboard_discord_decorations_anime_profile_2_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_profile_2_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_profile_2_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_profile_any_back'), )
+
+keyboard_discord_decorations_anime_profile_3_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_profile_3_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_profile_3_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_profile_any_back'), )
+
+keyboard_discord_decorations_anime_profile_4_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_profile_4_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_profile_4_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_profile_any_back'), )
+
+keyboard_discord_decorations_anime_avatar_1_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_avatar_1_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_avatar_1_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_avatar_any_back'), )
+
+keyboard_discord_decorations_anime_avatar_2_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_avatar_2_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_avatar_2_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_avatar_any_back'), )
+
+keyboard_discord_decorations_anime_avatar_3_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_avatar_3_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_avatar_3_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_avatar_any_back'), )
+
+keyboard_discord_decorations_anime_avatar_4_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_avatar_4_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_avatar_4_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_avatar_any_back'), )
+
+keyboard_discord_decorations_anime_avatar_5_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_avatar_5_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_avatar_5_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_avatar_any_back'), )
+
+keyboard_discord_decorations_anime_avatar_6_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_avatar_6_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_avatar_6_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_avatar_any_back'), )
+
+keyboard_discord_decorations_anime_avatar_7_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_anime_avatar_7_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_anime_avatar_7_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anime_avatar_any_back'), )
+
+keyboard_discord_decorations_breakfast = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast.add(
+    InlineKeyboardButton(text='🥐Украшения аватара', callback_data='discord_decorations_breakfast_avatar'),
+    InlineKeyboardButton(text='🥐Эффекты профиля', callback_data='discord_decorations_breakfast_profile'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_anytheme_back'),
+)
+
+keyboard_discord_decorations_breakfast_avatar = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_avatar.add(
+    InlineKeyboardButton(text='🥐Тост', callback_data='discord_decorations_breakfast_avatar_1'),
+    InlineKeyboardButton(text='🥐Утренний кофе', callback_data='discord_decorations_breakfast_avatar_2'),
+    InlineKeyboardButton(text='🥐Жаренное яйцо', callback_data='discord_decorations_breakfast_avatar_3'),
+    InlineKeyboardButton(text='🥐Черничный джем', callback_data='discord_decorations_breakfast_avatar_4'),
+    InlineKeyboardButton(text='🥐Пончик', callback_data='discord_decorations_breakfast_avatar_5'),
+    InlineKeyboardButton(text='🥐Оладушки', callback_data='discord_decorations_breakfast_avatar_6'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_anypiece_back'), )
+
+keyboard_discord_decorations_breakfast_profile = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_profile.add(
+    InlineKeyboardButton(text='🥐Discord-Os', callback_data='discord_decorations_breakfast_profile_1'),
+    InlineKeyboardButton(text='🥐Сытный завтрак', callback_data='discord_decorations_breakfast_profile_2'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_anypiece_back'), )
+
+keyboard_discord_decorations_breakfast_profile_1_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_profile_1_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_breakfast_profile_1_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_profile_any_back'), )
+
+keyboard_discord_decorations_breakfast_profile_2_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_profile_2_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_breakfast_profile_2_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_profile_any_back'), )
+
+keyboard_discord_decorations_breakfast_avatar_1_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_avatar_1_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_breakfast_avatar_1_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_avatar_any_back'), )
+
+keyboard_discord_decorations_breakfast_avatar_2_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_avatar_2_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_breakfast_avatar_2_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_avatar_any_back'), )
+
+keyboard_discord_decorations_breakfast_avatar_3_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_avatar_3_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_breakfast_avatar_3_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_avatar_any_back'), )
+
+keyboard_discord_decorations_breakfast_avatar_4_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_avatar_4_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_breakfast_avatar_4_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_avatar_any_back'), )
+
+keyboard_discord_decorations_breakfast_avatar_5_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_avatar_5_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_breakfast_avatar_5_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_avatar_any_back'), )
+
+keyboard_discord_decorations_breakfast_avatar_6_buy = InlineKeyboardMarkup(row_width=1)
+keyboard_discord_decorations_breakfast_avatar_6_buy.add(
+    InlineKeyboardButton(text='Купить', callback_data='discord_decorations_breakfast_avatar_6_buy'),
+    InlineKeyboardButton(text='Назад', callback_data='discord_decorations_breakfast_avatar_any_back'), )
+
 
 def buy_menu(isurl=True, url='', bill=''):
     yomoney_menu = InlineKeyboardMarkup(row_width=1)
@@ -20,6 +309,11 @@ def review_kb(order_id):
 choose_insert = InlineKeyboardMarkup(row_width=1)
 choose_insert.add(InlineKeyboardButton(text='Отмена', callback_data='choose_insert_cancel'))
 
+keyboard_discord = InlineKeyboardMarkup(row_width=1)
+keyboard_discord.add(InlineKeyboardButton(text='Nitro', callback_data='discord_nitro'),
+                     InlineKeyboardButton(text='Украшения', callback_data='discord_decorations'),
+                     InlineKeyboardButton(text='Назад ко всем категориям', callback_data='discord_back'), )
+
 keyboard_nitro = InlineKeyboardMarkup(row_width=1)
 keyboard_nitro.add(InlineKeyboardButton(text=f'Nitro Full(1 месяц) QR',
                                         callback_data='ntr_1m_qr'),
@@ -28,7 +322,7 @@ keyboard_nitro.add(InlineKeyboardButton(text=f'Nitro Full(1 месяц) QR',
                                         callback_data='ntr_1m_no_log'),
                    InlineKeyboardButton(text=f'Nitro Full(1 год) без входа',
                                         callback_data='ntr_1y_no_log'),
-                   InlineKeyboardButton(text=f'Назад ко всем категориям', callback_data='ntr_back'), )
+                   InlineKeyboardButton(text=f'Назад', callback_data='ntr_back'), )
 
 keyboard_buy_nitro_1m_qr = InlineKeyboardMarkup(row_width=1)
 keyboard_buy_nitro_1m_qr.add(InlineKeyboardButton(text='Купить', callback_data='buy_buy_nitro_1m_qr'),
@@ -244,7 +538,7 @@ keyboard_top_up = InlineKeyboardMarkup(row_width=1)
 keyboard_top_up.add(InlineKeyboardButton(text='Пополнить', callback_data='profile_insert'))
 
 keyboard_stock_inl = InlineKeyboardMarkup(row_width=2)
-keyboard_stock_inl.add(InlineKeyboardButton(text='💜Discord Nitro', callback_data='btndiscord'),
+keyboard_stock_inl.add(InlineKeyboardButton(text='💜Discord', callback_data='btndiscord'),
                        InlineKeyboardButton(text='🟣Яндекс Плюс', callback_data='btnyandex'),
                        InlineKeyboardButton(text='🔷Telegram Premium', callback_data='btntg'),
                        InlineKeyboardButton(text='🟢Spotify Premium', callback_data='btnspotify'),

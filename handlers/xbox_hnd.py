@@ -86,11 +86,8 @@ async def process_buy_xbox(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Xbox Game Pass на 1 месяц. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Xbox Game Pass на 1 месяц
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)

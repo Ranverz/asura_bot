@@ -232,11 +232,8 @@ async def process_buy_tg_1y_qr(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Telegram Premium на 1 год. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Telegram Premium 1 год QR
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -275,11 +272,8 @@ async def process_buy_tg_1y_noreg(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Telegram Premium на 1 год. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Telegram Premium 1 год без входа
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -316,11 +310,8 @@ async def process_buy_tg_1m_qr(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Telegram Premium на 1 месяц. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Telegram Premium 1 месяц QR
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -359,11 +350,8 @@ async def process_buy_tg_1m_noreg(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Telegram Premium на 1 месяц. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Telegram Premium 1 месяц без входа
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)

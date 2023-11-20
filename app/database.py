@@ -42,49 +42,59 @@ async def db_start():
             ''')
 
     items_data = [
-        ('dsntr_1m_qr', 349),
-        ('dsntr_1y_qr', 3399),
-        ('dsntr_1m_noreg', 439),
-        ('dsntr_1y_noreg', 3599),
+        ('ds_ntr_1m_qr', 299),
+        ('ds_ntr_1y_qr', 2939),
+        ('ds_ntr_1m_noreg', 349),
+        ('ds_ntr_1y_noreg', 2989),
+
+        ('ds_dec_limited_avatar', 279),
+        ('ds_dec_limited_profile', 349),
+
+        ('ds_dec_fantasy_avatar', 349),
+        ('ds_dec_fantasy_profile', 369),
+        ('ds_dec_anime_avatar', 279),
+        ('ds_dec_anime_profile', 369),
+        ('ds_dec_breakfast_avatar', 139),
+        ('ds_dec_breakfast_profile', 369),
 
         ('gnsh_moon', 429),
         ('gnsh_60k', 89),
         ('gnsh_300k', 429),
         ('gnsh_980k', 1299),
-        ('gnsh_1980k', 2749),
-        ('gnsh_3280k', 4299),
-        ('gnsh_6480k', 8990),
+        ('gnsh_1980k', 2769),
+        ('gnsh_3280k', 4269),
+        ('gnsh_6480k', 8390),
 
-        ('hon_sp', 449),
-        ('hon_60k', 110),
-        ('hon_300k', 449),
-        ('hon_980k', 1359),
-        ('hon_1980k', 2929),
-        ('hon_3280k', 4599),
-        ('hon_6480k', 8969),
+        ('hon_sp', 429),
+        ('hon_60k', 89),
+        ('hon_300k', 428),
+        ('hon_980k', 1299),
+        ('hon_1980k', 2769),
+        ('hon_3280k', 4269),
+        ('hon_6480k', 8579),
 
-        ('tg_1m_qr', 249),
-        ('tg_1y_qr', 1799),
-        ('tg_1m_noreg', 279),
-        ('tg_1y_noreg', 1890),
+        ('tg_1m_qr', 239),
+        ('tg_1y_qr', 1760),
+        ('tg_1m_noreg', 289),
+        ('tg_1y_noreg', 1810),
 
-        ('ya', 89),
+        ('ya', 150),
 
-        ('xbox', 469),
+        ('xbox', 819),
 
-        ('spotify_1m', 199),
-        ('spotify_3m', 499),
-        ('spotify_6m', 990),
-        ('spotify_12m', 1699),
+        ('spotify_1m', 159),
+        ('spotify_3m', 469),
+        ('spotify_6m', 939),
+        ('spotify_12m', 1599),
 
-        ('fortnite_1000', 249),
-        ('fortnite_2800', 699),
-        ('fortnite_5000', 949),
-        ('fortnite_13500', 2299),
+        ('fortnite_1000', 469),
+        ('fortnite_2800', 1179),
+        ('fortnite_5000', 1959),
+        ('fortnite_13500', 4699),
 
     ]
 
-    cursor.executemany('''INSERT OR IGNORE INTO `items` (name, price) VALUES (?, ?)''', items_data)
+    cursor.executemany('''INSERT OR REPLACE INTO `items` (name, price) VALUES (?, ?)''', items_data)
 
     conn.commit()
 

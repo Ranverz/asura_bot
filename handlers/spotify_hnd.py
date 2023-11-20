@@ -179,11 +179,8 @@ async def process_buy_spotify_1m(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Spotify Premium на 1 месяц. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Spotify Premium 1 месяц
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -220,11 +217,8 @@ async def process_buy_spotify_3m(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Spotify Premium на 3 месяца. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Spotify Premium 3 месяц
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -262,11 +256,8 @@ async def process_buy_spotify_6m(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Spotify Premium на 6 месяцев. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Spotify Premium 6 месяцев
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -304,11 +295,8 @@ async def process_buy_spotify_12m(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Spotify Premium на 12 месяцев. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Spotify Premium 12 месяцев
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)

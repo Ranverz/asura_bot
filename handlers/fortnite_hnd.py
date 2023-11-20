@@ -130,11 +130,8 @@ async def process_buy_fortnite_1000(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 1000 В-баксов. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:1000 В-баксов
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -172,11 +169,8 @@ async def process_buy_fortnite_2800(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 2800 В-баксов. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:2800 В-баксов
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -214,11 +208,8 @@ async def process_buy_fortnite_5000(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 5000 В-баксов. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:5000 В-баксов
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -256,11 +247,8 @@ async def process_buy_fortnite_13500(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 13500 В-баксов. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:13500 В-баксов
 уникальный номер: {id_p}
                         ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)

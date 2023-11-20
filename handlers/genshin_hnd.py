@@ -308,11 +308,8 @@ async def pr_gnsh_buy_moon(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Благословения полой луны. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Благословение полой луны
 уникальный номер: {id_p}
                 ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -349,11 +346,8 @@ async def pr_gnsh_buy_60k(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 60 Кристаллов Сотворения. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:60 Кристаллов Сотворения
 уникальный номер: {id_p}
                 ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -390,11 +384,8 @@ async def pr_gnsh_buy_300k(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 300+30 Кристаллов Сотворения. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:300+30 Кристаллов Сотворения
 уникальный номер: {id_p}
                 ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -431,11 +422,8 @@ async def pr_gnsh_buy_980k(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 980+110 Кристаллов Сотворения. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:980+110 Кристаллов Сотворения
 уникальный номер: {id_p}
                 ''', reply_markup=kb.review_kb(id_p), message_id=callback_query.message.message_id,
                     chat_id=callback_query.message.chat.id)
@@ -472,11 +460,8 @@ async def pr_gnsh_buy_1980k(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 1980+260 Кристаллов Сотворения. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:1980+260 Кристаллов Сотворения
 уникальный номер: {id_p}
                 ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -513,11 +498,8 @@ async def pr_gnsh_buy_3280k(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 3280+600 Кристаллов Сотворения. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:3280+600 Кристаллов Сотворения
 уникальный номер: {id_p}
                 ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -554,11 +536,8 @@ async def pr_gnsh_buy_6480k(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой 6480+1600 Кристаллов Сотворения. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:6480+1600 Кристаллов Сотворения
 уникальный номер: {id_p}
                 ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)

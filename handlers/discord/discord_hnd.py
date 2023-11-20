@@ -21,6 +21,45 @@ async def process_callback_button_ds(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
+            await bot.edit_message_text(text='Discord', chat_id=callback_query.message.chat.id,
+                                        message_id=callback_query.message.message_id, reply_markup=kb.keyboard_discord)
+        else:
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
+            await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
+
+
+async def process_callback_button_ds_decorations(callback_query: types.CallbackQuery):
+    blocked_raw = (await db.show_blocked_users())
+    blocked = list(map(lambda user: user[0], blocked_raw))
+    if callback_query.from_user.id not in blocked:
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
+            await db.set_active(callback_query.from_user.id, 1)
+            await bot.edit_message_text(text='Discord Украшения профиля.\nВыберите категорию:',
+                                        chat_id=callback_query.message.chat.id,
+                                        message_id=callback_query.message.message_id,
+                                        reply_markup=kb.keyboard_discord_decorations)
+        else:
+            await callback_query.message.answer(
+                f'''Для доступа к функционалу магазина, сначала подпишитесь на наш <a href='https://t.me/{NEWS_ID}'>канал</a>.''',
+                parse_mode=types.ParseMode.HTML)
+            await db.set_active(callback_query.from_user.id, 0)
+    else:
+        await db.set_active(callback_query.from_user.id, 0)
+
+
+# @dp.callback_query_handler(text='discord_nitro')
+async def process_callback_button_ds_nitro(callback_query: types.CallbackQuery):
+    blocked_raw = (await db.show_blocked_users())
+    blocked = list(map(lambda user: user[0], blocked_raw))
+    if callback_query.from_user.id not in blocked:
+        if await check_sub_channel(
+                await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
+            await db.set_active(callback_query.from_user.id, 1)
             await bot.edit_message_text(text='Discord Nitro', chat_id=callback_query.message.chat.id,
                                         message_id=callback_query.message.message_id, reply_markup=kb.keyboard_nitro)
         else:
@@ -40,7 +79,7 @@ async def process_callback_button_ds_1m_noreg(callback_query: types.CallbackQuer
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            price_nitro_1m_noreg = await db.show_price('dsntr_1m_noreg')
+            price_nitro_1m_noreg = await db.show_price('ds_ntr_1m_noreg')
             await bot.edit_message_text(text=f'''Товар: 🎈Nitro Full (1 месяц) + 2 boosts
 📄 Описание: 
 🎈Discord Nitro
@@ -74,7 +113,7 @@ async def process_callback_button_ds_1y_noreg(callback_query: types.CallbackQuer
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            price_nitro_1y_noreg = await db.show_price('dsntr_1y_noreg')
+            price_nitro_1y_noreg = await db.show_price('ds_ntr_1y_noreg')
             await bot.edit_message_text(text=f'''Товар: 🎈Nitro Full (1 год) + 2 boosts
 📄 Описание: 
 🎈Discord Nitro
@@ -108,7 +147,7 @@ async def process_callback_button_ds_1y_qr(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            price_nitro_1y_qr = await db.show_price('dsntr_1y_qr')
+            price_nitro_1y_qr = await db.show_price('ds_ntr_1y_qr')
             await bot.edit_message_text(text=f''' Товар: 🎈Nitro Full (1 год) + 2 boosts
 📄 Описание: 
 🎈Discord Nitro QR
@@ -147,7 +186,7 @@ async def process_callback_button_ds_1m_qr(callback_query: types.CallbackQuery):
         if await check_sub_channel(
                 await bot.get_chat_member(chat_id=f'@{NEWS_ID}', user_id=callback_query.from_user.id)):
             await db.set_active(callback_query.from_user.id, 1)
-            price_nitro_1m_qr = await db.show_price('dsntr_1m_qr')
+            price_nitro_1m_qr = await db.show_price('ds_ntr_1m_qr')
             await bot.edit_message_text(chat_id=callback_query.from_user.id, text=f''' Товар: 🎈Nitro Full (1 месяц) + 2 boosts
 📄 Описание: 
 🎈Discord Nitro QR
@@ -210,7 +249,7 @@ async def process_buy_nitro_1y_qr(callback_query: types.CallbackQuery):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
-            price_nitro_1y_qr = await db.show_price('dsntr_1y_qr')
+            price_nitro_1y_qr = await db.show_price('ds_ntr_1y_qr')
             if money >= price_nitro_1y_qr:
                 await db.add_money(callback_query.from_user.id, -price_nitro_1y_qr)
                 await db.add_purchase(callback_query.from_user.id, 'Discord Nitro 1y QR', price_nitro_1y_qr, time)
@@ -218,11 +257,8 @@ async def process_buy_nitro_1y_qr(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Discord Nitro на 1 год. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Discord Nitro 1 год QR
 уникальный номер: {id_p}
                             ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -251,7 +287,7 @@ async def process_buy_nitro_1m_qr(callback_query: types.CallbackQuery):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
-            price_nitro_1m_qr = await db.show_price('dsntr_1m_qr')
+            price_nitro_1m_qr = await db.show_price('ds_ntr_1m_qr')
             if money >= price_nitro_1m_qr:
                 await db.add_money(callback_query.from_user.id, -price_nitro_1m_qr)
                 await db.add_purchase(callback_query.from_user.id, 'Discord Nitro 1m QR', price_nitro_1m_qr, time)
@@ -259,11 +295,8 @@ async def process_buy_nitro_1m_qr(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Discord Nitro на 1 месяц. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
 
-Убедительная просьба после получения товара оставить отзыв.
-
-тип товара:Discord Nitro 1 месяц QR
 уникальный номер: {id_p}
                             ''', reply_markup=kb.review_kb(id_p), chat_id=callback_query.message.chat.id,
                     message_id=callback_query.message.message_id)
@@ -292,7 +325,7 @@ async def process_buy_nitro_1m_noreg(callback_query: types.CallbackQuery):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
-            price_nitro_1m_noreg = await db.show_price('dsntr_1m_noreg')
+            price_nitro_1m_noreg = await db.show_price('ds_ntr_1m_noreg')
             if money >= price_nitro_1m_noreg:
                 await db.add_money(callback_query.from_user.id, -price_nitro_1m_noreg)
                 await db.add_purchase(callback_query.from_user.id, 'Discord Nitro 1m noreg', price_nitro_1m_noreg, time)
@@ -300,11 +333,8 @@ async def process_buy_nitro_1m_noreg(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Discord Nitro на 1 месяц. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
-    
-Убедительная просьба после получения товара оставить отзыв.
-    
-тип товара:Discord Nitro 1 месяц без входа
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
+
 уникальный номер: {id_p}
                                             ''', reply_markup=kb.review_kb(id_p),
                     chat_id=callback_query.message.chat.id, message_id=callback_query.message.message_id)
@@ -333,7 +363,7 @@ async def process_buy_nitro_1y_noreg(callback_query: types.CallbackQuery):
             await db.set_active(callback_query.from_user.id, 1)
             money = await db.show_money(callback_query.from_user.id)
             time = str(datetime.datetime.now(moscow_tz)).split('+')[0]
-            price_nitro_1y_noreg = await db.show_price('dsntr_1y_noreg')
+            price_nitro_1y_noreg = await db.show_price('ds_ntr_1y_noreg')
             if money >= price_nitro_1y_noreg:
                 await db.add_money(callback_query.from_user.id, -price_nitro_1y_noreg)
                 await db.add_purchase(callback_query.from_user.id, 'Discord Nitro 1y noreg', price_nitro_1y_noreg, time)
@@ -341,11 +371,8 @@ async def process_buy_nitro_1y_noreg(callback_query: types.CallbackQuery):
                 await bot.edit_message_text(
                     text=f'''
 Поздравляем с покупкой Discord Nitro на 1 год. 
-Cвяжитесь с администратором для получения товара: @AsuraStore_helper, переслав это сообщение.
-    
-Убедительная просьба после получения товара оставить отзыв.
-    
-тип товара:Discord Nitro 1 год без входа
+Cвяжитесь с администратором для получения товара: @AsuraStore_helper, если он не написал вам сам.
+
 уникальный номер: {id_p}
                                             ''', reply_markup=kb.review_kb(id_p),
                     chat_id=callback_query.message.chat.id, message_id=callback_query.message.message_id)
@@ -365,14 +392,19 @@ Cвяжитесь с администратором для получения т
 
 
 def reg_hand_discord():
+    dp.register_callback_query_handler(process_callback_button_ds, text='btndiscord')
     dp.register_callback_query_handler(process_buy_nitro_1m_qr, text='buy_buy_nitro_1m_qr')
     dp.register_callback_query_handler(process_buy_nitro_1y_qr, text='buy_buy_nitro_1y_qr')
     dp.register_callback_query_handler(process_buy_nitro_1m_noreg, text='buy_buy_nitro_1m_noreg')
     dp.register_callback_query_handler(process_buy_nitro_1y_noreg, text='buy_buy_nitro_1y_noreg')
-    dp.register_callback_query_handler(process_callback_button_ds, text='btndiscord')
-    dp.register_callback_query_handler(process_callback_button_ds, text='buy_back')
+    dp.register_callback_query_handler(process_callback_button_ds_nitro, text='discord_nitro')
+    dp.register_callback_query_handler(process_callback_button_ds_nitro, text='buy_back')
     dp.register_callback_query_handler(process_callback_button_ds_1y_qr, text='ntr_1y_qr')
     dp.register_callback_query_handler(process_callback_button_ds_1m_qr, text='ntr_1m_qr')
     dp.register_callback_query_handler(process_callback_button_ds_1m_noreg, text='ntr_1m_no_log')
     dp.register_callback_query_handler(process_callback_button_ds_1y_noreg, text='ntr_1y_no_log')
-    dp.register_callback_query_handler(process_callback_button_ds_back, text='ntr_back')
+    dp.register_callback_query_handler(process_callback_button_ds, text='ntr_back')
+    dp.register_callback_query_handler(process_callback_button_ds, text='discord_decorations_back')
+    dp.register_callback_query_handler(process_callback_button_ds_back, text='discord_back')
+    dp.register_callback_query_handler(process_callback_button_ds_decorations, text='discord_decorations')
+    dp.register_callback_query_handler(process_callback_button_ds_decorations, text='discord_decorations_anytheme_back')

@@ -12,7 +12,7 @@ from app.var import dp, bot, check_sub_channel, NEWS_ID, REVIEWS_ID
 
 from handlers.profile_hnd import reg_hand_profile
 from handlers.admin_hnd import reg_hand_admin
-from handlers.discord_hnd import reg_hand_discord
+from handlers.discord.discord_hnd import reg_hand_discord
 from handlers.genshin_hnd import reg_hand_genshin
 from handlers.honkai_hnd import reg_hand_honkai
 from handlers.tg_hnd import reg_hand_tg
@@ -21,6 +21,8 @@ from handlers.xbox_hnd import reg_hand_xbox
 from handlers.other_hnd import reg_hand_other
 from handlers.spotify_hnd import reg_hand_spotify
 from handlers.fortnite_hnd import reg_hand_fortnite
+from handlers.discord.discord_decorations_hnd import reg_hand_discord_decorations
+from handlers.discord.discord_limited_decorations_hnd import reg_hand_discord_limited_decorations
 
 from dotenv import load_dotenv
 
@@ -272,6 +274,8 @@ async def addreview_text(message: types.Message, state: FSMContext):
 reg_hand_profile()
 reg_hand_admin()
 reg_hand_discord()
+reg_hand_discord_decorations()
+reg_hand_discord_limited_decorations()
 reg_hand_spotify()
 reg_hand_genshin()
 reg_hand_honkai()
