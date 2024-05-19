@@ -7,6 +7,15 @@ keyboard_discord_decorations.add(InlineKeyboardButton(text='🍂Fall', callback_
                                  InlineKeyboardButton(text='🥐Breakfast', callback_data='discord_breakfast'),
                                  InlineKeyboardButton(text='Назад', callback_data='discord_decorations_back'), )
 
+
+async def create_order(item, price):
+    keyboard_pay_custom_order = InlineKeyboardMarkup(row_width=1)
+    keyboard_pay_custom_order.add(
+        InlineKeyboardButton(text='Оплатить', callback_data=f'custom_order_pay!!{item}!!{price}'),
+        InlineKeyboardButton(text='Отмена', callback_data='custom_order_cancel'))
+    return keyboard_pay_custom_order
+
+
 keyboard_discord_decorations_limited = InlineKeyboardMarkup(row_width=1)
 keyboard_discord_decorations_limited.add(
     InlineKeyboardButton(text='🍂Украшения аватара', callback_data='discord_decorations_limited_avatar'),
@@ -528,7 +537,8 @@ keyboard_main_admin.add('Товары', 'Профиль').add('Руководс�
 
 admin_panel = ReplyKeyboardMarkup(resize_keyboard=True)
 admin_panel.add('Рассылка (/sendall *text*)').add('+бл (/addmn *id* *amm*)').add('измц (/cgprice *name* *price*)').add(
-    'польз (/useractive)').add('забл (/block *id*)').add('разбл (/unblock *id*)').add('забл_спис /list_blocked')
+    'польз (/useractive)').add('забл (/block *id*)').add('разбл (/unblock *id*)').add('забл_спис /list_blocked').add(
+    'отп_чек (/send_check#*id*#*item*#*price*')
 
 keyboard_profile = InlineKeyboardMarkup(row_width=2)
 keyboard_profile.add(InlineKeyboardButton(text='Пополнить', callback_data='profile_insert'),
